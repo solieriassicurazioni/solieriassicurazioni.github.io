@@ -6,7 +6,7 @@ Sito web vetrina per l'agenzia **Solieri Assicurazioni**. Soluzioni personalizza
 
 ## 🚀 Sito Live
 
-*(In attesa di pubblicazione su Vercel/Netlify)*
+[https://solieriassicurazioni.github.io](https://solieriassicurazioni.github.io)
 
 ## 📁 Struttura
 
