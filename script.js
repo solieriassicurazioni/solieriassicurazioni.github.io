@@ -12,13 +12,13 @@ const CONTACT_CONFIG = {
 };
 
 // 2. Logic Handler: Apri Mail
-document.getElementById('btn-email').addEventListener('click', () => {
+document.getElementById('btn-email')?.addEventListener('click', () => {
     const mailtoLink = `mailto:${CONTACT_CONFIG.EMAIL}?subject=${encodeURIComponent(CONTACT_CONFIG.EMAIL_SUBJECT)}&body=${encodeURIComponent(CONTACT_CONFIG.EMAIL_BODY)}`;
     window.location.href = mailtoLink;
 });
 
 // 3. Logic Handler: Apri WhatsApp
-document.getElementById('btn-wa').addEventListener('click', () => {
+document.getElementById('btn-wa')?.addEventListener('click', () => {
     // Rileva se su mobile (per aprire l'app WA) o desktop (per aprire WA Web)
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const baseUrl = isMobile ? "whatsapp://send" : "https://web.whatsapp.com/send";
