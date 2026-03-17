@@ -637,7 +637,7 @@ body {
         gap: var(--space-md);
         text-align: center;
     }
-
+}
     /* --- NAV DROPDOWN con descrizioni --- */
 .nav-desc-link {
     display: flex;
