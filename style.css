@@ -652,7 +652,7 @@ body {
     color: var(--text-main);
     transition: color var(--transition-fast);
 }
-
+    
 .nav-item-desc {
     font-weight: 400;
     font-size: 0.78rem;
