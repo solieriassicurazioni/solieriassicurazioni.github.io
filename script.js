@@ -84,3 +84,42 @@ document.addEventListener('click', (e) => {
         dropdown.closest('.dropdown').querySelector('.dropdown-toggle').setAttribute('aria-expanded', false);
     });
 });
+
+// 6. Cookie Banner Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const btnAcceptAll = document.getElementById('cookie-accept-all');
+    const btnRejectOptional = document.getElementById('cookie-reject-optional');
+    const btnOpenSettings = document.getElementById('open-cookie-settings');
+
+    if (!localStorage.getItem('solieri_cookie_consent')) {
+        setTimeout(() => {
+            if (cookieBanner) cookieBanner.style.display = 'block';
+        }, 800);
+    }
+
+    const saveConsent = (type) => {
+        localStorage.setItem('solieri_cookie_consent', JSON.stringify({
+            agreedToAll: type === 'all',
+            timestamp: new Date().toISOString()
+        }));
+        if (cookieBanner) cookieBanner.style.display = 'none';
+    };
+
+    if (btnAcceptAll) btnAcceptAll.addEventListener('click', () => saveConsent('all'));
+    if (btnRejectOptional) btnRejectOptional.addEventListener('click', () => saveConsent('necessary'));
+
+    if (btnOpenSettings) {
+        btnOpenSettings.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('solieri_cookie_consent');
+            if (cookieBanner) cookieBanner.style.display = 'block';
+        });
+    }
+
+    // Expose openCookieSettings globally
+    window.openCookieSettings = function () {
+        localStorage.removeItem('solieri_cookie_consent');
+        if (cookieBanner) cookieBanner.style.display = 'block';
+    }
+});

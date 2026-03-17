@@ -288,14 +288,48 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Agenzia “Solieri” – Via Belfiore, 66 – 37135 Cadidavid (VR) | P.IVA 02581110232</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Policy</a>
+        <div class="container footer-content" style="flex-direction: column; text-align: center; gap: 16px;">
+            <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 8px;">
+                <strong>Solieri Assicurazioni – Rag. Nicola Solieri</strong><br>
+                Sede: Via Belfiore, 66 – 37135 Cadidavid (VR) | P.IVA 02581110232<br>
+                Iscritto al RUI (Registro Unico Intermediari IVASS) n. <strong>E000097327</strong> – Sez. E &middot; <a
+                    href="https://www.ivass.it/consumatori/per-le-persone/strumenti-a-tua-disposizione/trova-un-intermediario/"
+                    target="_blank" rel="noopener" style="color: white; text-decoration: underline;">Verifica su
+                    ivass.it</a><br>
+                Tel: 045 856 8483 &middot; Mobile: 347 239 4039 | E-mail: <a
+                    href="mailto:solieriassicurazioni@gmail.com"
+                    style="color: white;">solieriassicurazioni@gmail.com</a> &middot; PEC: <a
+                    href="mailto:Solieriassicurazioni@pec.it" style="color: white;">Solieriassicurazioni@pec.it</a>
+            </div>
+
+            <p>&copy; 2026 Agenzia “Solieri” – Tutti i diritti riservati.</p>
+            <div class="footer-links" style="margin-top: 8px;">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="cookie-policy.html">Cookie Policy</a>
+                <a href="#" id="open-cookie-settings">Gestione Cookie</a>
             </div>
         </div>
     </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner"
+        style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 9999; padding: 24px; border-top: 2px solid var(--axa-blue);">
+        <div class="container" style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+                <h3 style="color: var(--axa-blue); margin-bottom: 8px;">Informativa sui Cookie</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Utilizziamo cookie tecnici per il
+                    funzionamento del sito e, previo tuo consenso, cookie analitici per migliorare la tua esperienza. <a
+                        href="cookie-policy.html" style="color: var(--axa-blue); text-decoration: underline;">Scopri di
+                        più</a>.</p>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button id="cookie-accept-all" class="btn btn-primary bg-green"
+                    style="padding: 8px 16px; font-size: 0.9rem;">Accetta Tutti</button>
+                <button id="cookie-reject-optional" class="btn btn-outline"
+                    style="padding: 8px 16px; font-size: 0.9rem;">Rifiuta Opzionali</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 

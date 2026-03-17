@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Solieri Assicurazioni</title>
+    <meta name="description"
+        content="Informativa sul trattamento dei dati personali di Solieri Assicurazioni ai sensi del Regolamento UE 2016/679 (GDPR).">
+    <meta name="robots" content="index, follow">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0D0D12;
+            --accent: #C9A84C;
+            --bg: #FAF8F5;
+            --darktext: #2A2A35;
+            --muted: #6B6B7A;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--darktext);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .top-bar {
+            background: var(--primary);
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            color: var(--bg);
+            font-size: 1.1rem;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .hero-legal {
+            background: var(--primary);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-legal .badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-legal h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--bg);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        .hero-legal h1 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-legal .subtitle {
+            color: rgba(250, 248, 245, 0.55);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .toc {
+            background: white;
+            border: 1px solid rgba(42, 42, 53, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .toc ol {
+            padding-left: 1.25rem;
+            color: var(--darktext);
+        }
+
+        .toc li {
+            margin-bottom: 0.4rem;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .doc-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .doc-section h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .doc-section h2 .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .doc-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .doc-section p {
+            margin-bottom: 1rem;
+            color: #3D3D4E;
+        }
+
+        .doc-section ul,
+        .doc-section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #3D3D4E;
+        }
+
+        .doc-section li {
+            margin-bottom: 0.4rem;
+        }
+
+        .highlight-box {
+            background: rgba(201, 168, 76, 0.08);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 0.75rem 0.75rem 0;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--bg);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(42, 42, 53, 0.08);
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(42, 42, 53, 0.03);
+        }
+
+        .contact-card {
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: rgba(250, 248, 245, 0.7);
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+        }
+
+        footer.legal-footer {
+            background: var(--primary);
+            color: rgba(250, 248, 245, 0.4);
+            text-align: center;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        footer.legal-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-bar" role="navigation" aria-label="Navigazione principale">
+        <a href="index.html" class="logo" aria-label="Torna alla homepage di Solieri Assicurazioni">
+            Solieri <span>Assicurazioni</span>
+        </a>
+        <a href="index.html" class="back-link" aria-label="Torna alla home">← Home</a>
+    </nav>
+
+    <header class="hero-legal" role="banner">
+        <div class="badge">Documento Legale</div>
+        <h1>Privacy <em>Policy</em></h1>
+        <p class="subtitle">Ultimo aggiornamento: Marzo 2026 &nbsp;·&nbsp; GDPR Reg. UE 2016/679</p>
+    </header>
+
+    <main class="container" id="main-content">
+
+        <nav class="toc" aria-label="Indice del documento">
+            <h2>Indice</h2>
+            <ol>
+                <li><a href="#titolare">Titolare del trattamento</a></li>
+                <li><a href="#dati-raccolti">Dati personali raccolti</a></li>
+                <li><a href="#finalita">Finalità e base giuridica</a></li>
+                <li><a href="#conservazione">Conservazione dei dati</a></li>
+                <li><a href="#destinatari">Destinatari e trasferimenti</a></li>
+                <li><a href="#diritti">I tuoi diritti</a></li>
+                <li><a href="#cookie">Cookie e tracciamento</a></li>
+                <li><a href="#minori">Minori di età</a></li>
+                <li><a href="#contatti">Contatti e DPO</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1 -->
+        <section class="doc-section" id="titolare">
+            <h2><span class="num">1</span> Titolare del Trattamento</h2>
+            <p>Il Titolare del trattamento dei dati personali è:</p>
+            <div class="highlight-box">
+                <p><strong>Solieri Assicurazioni – Consulenze e Servizi Assicurativi</strong><br>
+                    Titolare: <strong>Rag. Nicola Solieri</strong><br>
+                    P.IVA: <strong>02581110232</strong> &nbsp;·&nbsp; C.F.: SLRNCL70P01E349M<br>
+                    Sede: Via Belfiore, 66 – 37135 Cadidavid (VR)<br>
+                    Iscritto al RUI (Registro Unico Intermediari IVASS) n.: <strong>[DA COMPLETARE — cerca su
+                        ivass.it]</strong><br>
+                    Tel: <a href="tel:+390458568483">045 856 8483</a> &nbsp;·&nbsp; Mobile: <a
+                        href="tel:+393472394039">347 239 4039</a><br>
+                    E-mail: <a href="mailto:solieriassicurazioni@gmail.com">solieriassicurazioni@gmail.com</a><br>
+                    PEC: <strong>[DA COMPLETARE]</strong></p>
+            </div>
+            <p>Ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR), il Titolare fornisce le seguenti informazioni
+                sul trattamento dei dati personali degli utenti che visitano il sito web e/o richiedono i servizi
+                offerti.</p>
+        </section>
+
+        <!-- 2 -->
+        <section class="doc-section" id="dati-raccolti">
+            <h2><span class="num">2</span> Dati Personali Raccolti</h2>
+            <h3>2.1 Dati forniti volontariamente dall'utente</h3>
+            <ul>
+                <li>Nome e cognome</li>
+                <li>Indirizzo e-mail</li>
+                <li>Numero di telefono</li>
+                <li>Dati relativi alla richiesta di preventivo (tipo di polizza, veicolo, immobile, ecc.)</li>
+                <li>Eventuali dati particolari comunicati spontaneamente (es. dati sanitari per polizze salute)</li>
+            </ul>
+            <h3>2.2 Dati raccolti automaticamente (navigazione)</h3>
+            <ul>
+                <li>Indirizzo IP</li>
+                <li>Tipo e versione del browser</li>
+                <li>Sistema operativo</li>
+                <li>Pagine visitate e durata della visita</li>
+                <li>Dati di navigazione tramite cookie (vedi <a href="#cookie">Sezione 7</a> e <a
+                        href="cookie-policy.html">Cookie Policy</a>)</li>
+            </ul>
+        </section>
+
+        <!-- 3 -->
+        <section class="doc-section" id="finalita">
+            <h2><span class="num">3</span> Finalità e Base Giuridica</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Finalità</th>
+                        <th>Base Giuridica</th>
+                        <th>Obbligatorietà</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Risposta a richieste di preventivo e contatto</td>
+                        <td>Esecuzione di misure precontrattuali (art. 6(1)(b) GDPR)</td>
+                        <td>Necessaria per il servizio</td>
+                    </tr>
+                    <tr>
+                        <td>Adempimento obblighi di legge e normativi IVASS/ISVAP</td>
+                        <td>Obbligo di legge (art. 6(1)(c) GDPR)</td>
+                        <td>Obbligatoria</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing e comunicazioni commerciali</td>
+                        <td>Consenso (art. 6(1)(a) GDPR)</td>
+                        <td>Facoltativa</td>
+                    </tr>
+                    <tr>
+                        <td>Analisi statistica e miglioramento del sito</td>
+                        <td>Interesse legittimo (art. 6(1)(f) GDPR) o Consenso per cookie Analytics</td>
+                        <td>Facoltativa</td>
+                    </tr>
+                    <tr>
+                        <td>Prevenzione frodi e sicurezza informatica</td>
+                        <td>Interesse legittimo (art. 6(1)(f) GDPR)</td>
+                        <td>Automatica</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="highlight-box">
+                <p><strong>Nota sui dati particolari (art. 9 GDPR):</strong> Qualora la richiesta riguardi polizze
+                    sanitarie o prodotti che richiedono dati relativi alla salute, il trattamento avverrà esclusivamente
+                    con esplicito consenso scritto dell'interessato, ai sensi dell'art. 9(2)(a) GDPR.</p>
+            </div>
+        </section>
+
+        <!-- 4 -->
+        <section class="doc-section" id="conservazione">
+            <h2><span class="num">4</span> Conservazione dei Dati</h2>
+            <p>I dati personali sono conservati per il tempo strettamente necessario alle finalità per cui sono stati
+                raccolti:</p>
+            <ul>
+                <li><strong>Richieste di preventivo non seguite da contratto:</strong> 12 mesi dalla richiesta</li>
+                <li><strong>Dati contrattuali (polizze stipulate):</strong> 10 anni dalla cessazione del contratto
+                    (obblighi di legge)</li>
+                <li><strong>Dati per marketing (se consenso prestato):</strong> Fino alla revoca del consenso o 24 mesi
+                    dall'ultimo contatto</li>
+                <li><strong>Dati di navigazione/log:</strong> Massimo 12 mesi</li>
+                <li><strong>Cookie Analytics:</strong> Come da impostazioni del banner cookie (vedi Cookie Policy)</li>
+            </ul>
+            <p>Alla scadenza dei termini, i dati saranno cancellati o anonimizzati in modo irreversibile.</p>
+        </section>
+
+        <!-- 5 -->
+        <section class="doc-section" id="destinatari">
+            <h2><span class="num">5</span> Destinatari e Trasferimenti</h2>
+            <h3>5.1 Destinatari interni</h3>
+            <p>I dati sono trattati dal personale autorizzato di Solieri Assicurazioni, designato formalmente come
+                incaricato al trattamento.</p>
+            <h3>5.2 Responsabili esterni del trattamento</h3>
+            <p>I dati potranno essere comunicati a soggetti terzi designati come Responsabili del trattamento ai sensi
+                dell'art. 28 GDPR, tra cui:</p>
+            <ul>
+                <li>Compagnie assicuratrici mandanti (es. [Elenco compagnie]) per l'esecuzione del contratto</li>
+                <li>Fornitori di piattaforme e-mail e CRM</li>
+                <li>Fornitori di hosting e servizi cloud</li>
+                <li>Consulente fiscale e commercialista</li>
+                <li>Studi legali in caso di contenzioso</li>
+            </ul>
+            <h3>5.3 Trasferimenti extra-UE</h3>
+            <p>Alcuni fornitori di servizi digitali (es. Google Analytics, servizi cloud) potrebbero trasferire dati al
+                di fuori dello Spazio Economico Europeo. Tali trasferimenti avvengono nel rispetto delle garanzie
+                previste dal GDPR (Decisioni di adeguatezza, Clausole Contrattuali Standard).</p>
+        </section>
+
+        <!-- 6 -->
+        <section class="doc-section" id="diritti">
+            <h2><span class="num">6</span> I Tuoi Diritti</h2>
+            <p>In qualità di interessato, hai il diritto di:</p>
+            <ul>
+                <li><strong>Accesso (art. 15):</strong> ottenere conferma che si proceda al trattamento e ricevere copia
+                    dei dati</li>
+                <li><strong>Rettifica (art. 16):</strong> richiedere la correzione di dati inesatti</li>
+                <li><strong>Cancellazione (art. 17):</strong> richiedere la cancellazione dei dati ("diritto all'oblio")
+                </li>
+                <li><strong>Limitazione (art. 18):</strong> richiedere la limitazione del trattamento</li>
+                <li><strong>Portabilità (art. 20):</strong> ricevere i propri dati in formato strutturato e
+                    machine-readable</li>
+                <li><strong>Opposizione (art. 21):</strong> opporsi al trattamento per finalità di marketing diretto
+                </li>
+                <li><strong>Revoca del consenso:</strong> ritirare il consenso prestato in qualsiasi momento, senza
+                    pregiudicare la liceità del trattamento precedente</li>
+            </ul>
+            <div class="highlight-box">
+                <p>Per esercitare i tuoi diritti, invia una richiesta scritta a <a
+                        href="mailto:privacy@solieri-assicurazioni.it"><strong>privacy@solieri-assicurazioni.it</strong></a>.
+                    Il Titolare risponderà entro 30 giorni dalla ricezione. Hai altresì il diritto di proporre reclamo
+                    all'<strong>Autorità Garante per la protezione dei dati personali</strong> (<a
+                        href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).
+                </p>
+            </div>
+        </section>
+
+        <!-- 7 -->
+        <section class="doc-section" id="cookie">
+            <h2><span class="num">7</span> Cookie e Tracciamento</h2>
+            <p>Il sito utilizza cookie tecnici e, previo consenso, cookie di analisi e/o marketing. Per informazioni
+                dettagliate sul tipo di cookie installati, la loro durata e le modalità di gestione del consenso, si
+                rinvia alla <a href="cookie-policy.html"><strong>Cookie Policy</strong></a>.</p>
+            <p>Il consenso all'installazione di cookie non tecnici viene raccolto tramite il banner cookie presente al
+                primo accesso al sito e può essere modificato in qualsiasi momento tramite il link "Gestione Cookie" nel
+                footer.</p>
+        </section>
+
+        <!-- 8 -->
+        <section class="doc-section" id="minori">
+            <h2><span class="num">8</span> Minori di Età</h2>
+            <p>Il sito e i servizi offerti sono destinati esclusivamente a persone maggiorenni. Non raccogliamo
+                consapevolmente dati personali di minori di 18 anni. Se sei un genitore o tutore e ritieni che tuo
+                figlio abbia fornito dati personali, ti preghiamo di contattarci immediatamente all'indirizzo indicato
+                nella Sezione 9.</p>
+        </section>
+
+        <!-- 9 -->
+        <section class="doc-section" id="contatti">
+            <h2><span class="num">9</span> Contatti e DPO</h2>
+            <p>Per qualsiasi domanda relativa al trattamento dei dati personali o per esercitare i tuoi diritti:</p>
+            <div class="contact-card">
+                <h3>Riferimento Privacy</h3>
+                <p><strong>Solieri Assicurazioni – Rag. Nicola Solieri</strong></p>
+                <p>Tel: <a href="tel:+390458568483">045 856 8483</a> &nbsp;·&nbsp; <a href="tel:+393472394039">347 239
+                        4039</a></p>
+                <p>E-mail: <a href="mailto:solieriassicurazioni@gmail.com">solieriassicurazioni@gmail.com</a></p>
+                <p>PEC: <a href="mailto:Solieriassicurazioni@pec.it">Solieriassicurazioni@pec.it</a></p>
+                <p>Sede: Via Belfiore, 66 – 37135 Cadidavid (VR)</p>
+                <br>
+                <p style="font-size:0.85rem; color: rgba(250,248,245,0.5);">
+                    <strong>Nota:</strong> La nomina di un DPO (Data Protection Officer) è obbligatoria per categorie
+                    specifiche di titolari.
+                    Verificare con il proprio consulente legale se tale obbligo si applica alla propria struttura.
+                </p>
+            </div>
+            <p style="margin-top:1.5rem; font-size:0.85rem; color: var(--muted);">
+                La presente Privacy Policy è soggetta ad aggiornamenti periodici. L'ultima versione è sempre disponibile
+                su questa pagina.
+                Data dell'ultima revisione: <strong>Marzo 2026</strong>.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" role="contentinfo">
+        © 2026 Solieri Assicurazioni &nbsp;·&nbsp; P.IVA 02581110232 &nbsp;·&nbsp; RUI IVASS n. [DA COMPLETARE]<br>
+        <a href="index.html">Home</a> &nbsp;·&nbsp;
+        <a href="cookie-policy.html">Cookie Policy</a> &nbsp;·&nbsp;
+        <a href="mailto:solieriassicurazioni@gmail.com">solieriassicurazioni@gmail.com</a>
+    </footer>
+
+</body>
+
+</html>
