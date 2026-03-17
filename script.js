@@ -40,7 +40,7 @@ const setupScrollAnimations = () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Cerca gli elementi animabili all'interno del blocco osservato
-                const targets = entry.target.querySelectorAll('.fade-up, .fade-in');
+                const targets = [entry.target];
 
                 targets.forEach(target => {
                     target.classList.add('is-visible');
@@ -53,7 +53,7 @@ const setupScrollAnimations = () => {
     }, observerOptions);
 
     // Seleziona tutte le sezioni che hanno animazioni interne
-    document.querySelectorAll('.observer-section').forEach(section => {
+    document.querySelectorAll('.fade-up, .fade-in').forEach(section => {
         observer.observe(section);
     });
 };
