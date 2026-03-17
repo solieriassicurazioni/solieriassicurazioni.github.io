@@ -327,17 +327,20 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: calc(var(--space-xl) * 1.5) 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .hero-layout {
     display: flex;
-    align-items: center;
-    gap: var(--space-xl);
+        flex-direction: column;
+    align-items: stretch;
+        gap: 0;
 }
 
 .hero-text {
     flex: 1;
+        padding: calc(var(--space-xl) * 1.5) var(--space-xl);
 }
 
 .hero-title {
@@ -357,6 +360,9 @@ body {
 
 .hero-image {
     flex: 1;
+        width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     display: flex;
     justify-content: center;
 }
