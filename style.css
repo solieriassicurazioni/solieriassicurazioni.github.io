@@ -651,6 +651,7 @@ body {
     font-size: 0.95rem;
     color: var(--text-main);
     transition: color var(--transition-fast);
+        display: block;
 }
     
 .nav-item-desc {
