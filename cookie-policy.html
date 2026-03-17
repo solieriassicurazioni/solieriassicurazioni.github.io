@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | Solieri Assicurazioni</title>
+    <meta name="description"
+        content="Informativa sull'uso dei cookie sul sito di Solieri Assicurazioni. Scopri quali cookie utilizziamo e come gestire le tue preferenze.">
+    <meta name="robots" content="index, follow">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0D0D12;
+            --accent: #C9A84C;
+            --bg: #FAF8F5;
+            --darktext: #2A2A35;
+            --muted: #6B6B7A;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--darktext);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .top-bar {
+            background: var(--primary);
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            color: var(--bg);
+            font-size: 1.1rem;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .hero-legal {
+            background: var(--primary);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-legal .badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-legal h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--bg);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        .hero-legal h1 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-legal .subtitle {
+            color: rgba(250, 248, 245, 0.55);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .toc {
+            background: white;
+            border: 1px solid rgba(42, 42, 53, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .toc ol {
+            padding-left: 1.25rem;
+            color: var(--darktext);
+        }
+
+        .toc li {
+            margin-bottom: 0.4rem;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .doc-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .doc-section h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .doc-section h2 .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .doc-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .doc-section p {
+            margin-bottom: 1rem;
+            color: #3D3D4E;
+        }
+
+        /* Cookie Category Cards */
+        .cookie-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .cookie-card {
+            border: 1px solid rgba(42, 42, 53, 0.12);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .cookie-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: white;
+            cursor: default;
+        }
+
+        .cookie-card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .cookie-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+        }
+
+        .badge-required {
+            background: rgba(22, 160, 133, 0.1);
+            color: #16a085;
+            border: 1px solid rgba(22, 160, 133, 0.3);
+        }
+
+        .badge-optional {
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .badge-marketing {
+            background: rgba(192, 57, 43, 0.08);
+            color: #c0392b;
+            border: 1px solid rgba(192, 57, 43, 0.2);
+        }
+
+        .cookie-card-body {
+            padding: 1rem 1.25rem;
+            background: rgba(250, 248, 245, 0.5);
+            font-size: 0.9rem;
+            color: #3D3D4E;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--bg);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid rgba(42, 42, 53, 0.08);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(42, 42, 53, 0.03);
+        }
+
+        .highlight-box {
+            background: rgba(201, 168, 76, 0.08);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 0.75rem 0.75rem 0;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .manage-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .manage-btn:hover {
+            opacity: 0.85;
+        }
+
+        footer.legal-footer {
+            background: var(--primary);
+            color: rgba(250, 248, 245, 0.4);
+            text-align: center;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        footer.legal-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-bar" role="navigation" aria-label="Navigazione principale">
+        <a href="index.html" class="logo" aria-label="Torna alla homepage di Solieri Assicurazioni">
+            Solieri <span>Assicurazioni</span>
+        </a>
+        <a href="index.html" class="back-link" aria-label="Torna alla home">← Home</a>
+    </nav>
+
+    <header class="hero-legal" role="banner">
+        <div class="badge">Documento Legale</div>
+        <h1>Cookie <em>Policy</em></h1>
+        <p class="subtitle">Ultimo aggiornamento: Marzo 2026 &nbsp;·&nbsp; Dir. 2002/58/CE &nbsp;·&nbsp; GDPR Reg. UE
+            2016/679</p>
+    </header>
+
+    <main class="container" id="main-content">
+
+        <nav class="toc" aria-label="Indice del documento">
+            <h2>Indice</h2>
+            <ol>
+                <li><a href="#cosa-sono">Cosa sono i cookie</a></li>
+                <li><a href="#tipologie">Tipologie di cookie utilizzati</a></li>
+                <li><a href="#elenco">Elenco dettagliato dei cookie</a></li>
+                <li><a href="#gestione">Come gestire i cookie</a></li>
+                <li><a href="#terze-parti">Cookie di terze parti</a></li>
+                <li><a href="#aggiornamenti">Aggiornamenti alla policy</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1 -->
+        <section class="doc-section" id="cosa-sono">
+            <h2><span class="num">1</span> Cosa Sono i Cookie</h2>
+            <p>I cookie sono piccoli file di testo che i siti web salvano sul dispositivo dell'utente (computer,
+                smartphone, tablet) durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze
+                dell'utente (come lingua, dimensione del font, impostazioni di visualizzazione) nel corso del tempo, in
+                modo che non debbano essere indicate nuovamente ad ogni visita o durante la navigazione tra le pagine.
+            </p>
+            <p>Il sito <strong>solieri-assicurazioni.it</strong> utilizza cookie in conformità alla normativa vigente:
+                D.Lgs. 196/2003 (Codice Privacy), come modificato dal D.Lgs. 101/2018, Regolamento UE 2016/679 (GDPR),
+                Direttiva ePrivacy 2002/58/CE e Provvedimento del Garante Privacy n. 229/2014 e successive linee guida.
+            </p>
+        </section>
+
+        <!-- 2 -->
+        <section class="doc-section" id="tipologie">
+            <h2><span class="num">2</span> Tipologie di Cookie Utilizzati</h2>
+            <div class="cookie-categories">
+                <div class="cookie-card">
+                    <div class="cookie-card-header">
+                        <div class="cookie-card-title">
+                            🔒 Cookie Tecnici e Strettamente Necessari
+                            <span class="cookie-badge badge-required">Sempre attivi</span>
+                        </div>
+                    </div>
+                    <div class="cookie-card-body">
+                        Essenziali per il funzionamento del sito. Permettono la navigazione e l'utilizzo delle
+                        funzionalità di base, come il salvataggio delle preferenze cookie. Non richiedono il tuo
+                        consenso e non possono essere disattivati.
+                    </div>
+                </div>
+                <div class="cookie-card">
+                    <div class="cookie-card-header">
+                        <div class="cookie-card-title">
+                            📊 Cookie Analitici
+                            <span class="cookie-badge badge-optional">Richiede consenso</span>
+                        </div>
+                    </div>
+                    <div class="cookie-card-body">
+                        Ci aiutano a capire come i visitatori interagiscono con il sito, raccogliendo informazioni in
+                        forma anonima o aggregata (es. pagine visitate, tempo di permanenza, provenienza). Utilizzati
+                        per migliorare l'esperienza di navigazione. Attivati solo con il tuo consenso.
+                    </div>
+                </div>
+                <div class="cookie-card">
+                    <div class="cookie-card-header">
+                        <div class="cookie-card-title">
+                            🎯 Cookie di Marketing e Profilazione
+                            <span class="cookie-badge badge-marketing">Richiede consenso esplicito</span>
+                        </div>
+                    </div>
+                    <div class="cookie-card-body">
+                        Utilizzati per mostrare annunci pertinenti e personalizzati in base agli interessi dell'utente,
+                        anche su altri siti. Attivati solo con il tuo consenso esplicito. <em>Nota: attualmente il sito
+                            non utilizza cookie di profilazione di terze parti per advertising.</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="doc-section" id="elenco">
+            <h2><span class="num">3</span> Elenco Dettagliato dei Cookie</h2>
+            <p>La tabella seguente elenca i cookie attualmente rilevati su questo sito. L'elenco viene aggiornato
+                periodicamente.</p>
+
+            <h3>Cookie Tecnici (sempre attivi)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Fornitore</th>
+                        <th>Scopo</th>
+                        <th>Durata</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>solieri_cookie_consent</code></td>
+                        <td>Solieri Assicurazioni</td>
+                        <td>Salva le preferenze di consenso cookie dell'utente per non mostrare il banner ad ogni visita
+                        </td>
+                        <td>12 mesi</td>
+                        <td>First-party, Persistente</td>
+                    </tr>
+                    <tr>
+                        <td><code>PHPSESSID</code> / Session</td>
+                        <td>Solieri Assicurazioni</td>
+                        <td>Gestione sessione utente (se presente form di preventivo o login)</td>
+                        <td>Sessione</td>
+                        <td>First-party, Di sessione</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Cookie Analitici (richiedono consenso)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Fornitore</th>
+                        <th>Scopo</th>
+                        <th>Durata</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>_ga</code></td>
+                        <td>Google Analytics (Google LLC)</td>
+                        <td>Distingue gli utenti unici assegnando un numero generato casualmente come identificatore del
+                            cliente</td>
+                        <td>2 anni</td>
+                        <td>Third-party, Persistente</td>
+                    </tr>
+                    <tr>
+                        <td><code>_ga_XXXXXXXX</code></td>
+                        <td>Google Analytics (Google LLC)</td>
+                        <td>Mantiene lo stato della sessione di Google Analytics 4</td>
+                        <td>2 anni</td>
+                        <td>Third-party, Persistente</td>
+                    </tr>
+                    <tr>
+                        <td><code>_gid</code></td>
+                        <td>Google Analytics (Google LLC)</td>
+                        <td>Registra informazioni su come i visitatori usano il sito (pagine visitate, sorgente di
+                            traffico)</td>
+                        <td>24 ore</td>
+                        <td>Third-party, Persistente</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <p><strong>⚠️ Nota importante:</strong> L'elenco riportato è indicativo e si basa sui cookie più
+                    comunemente utilizzati. Verificare tramite DevTools del browser (F12 → Application → Cookies) o uno
+                    strumento di cookie scanning (es. <a href="https://www.cookiebot.com" target="_blank"
+                        rel="noopener">Cookiebot Scanner</a>) i cookie effettivamente installati sul sito in produzione,
+                    e aggiornare questa tabella di conseguenza prima della pubblicazione.</p>
+            </div>
+        </section>
+
+        <!-- 4 -->
+        <section class="doc-section" id="gestione">
+            <h2><span class="num">4</span> Come Gestire i Cookie</h2>
+            <h3>4.1 Tramite il pannello di preferenze del sito</h3>
+            <p>Puoi modificare le tue preferenze sui cookie in qualsiasi momento tramite il pannello di gestione cookie
+                disponibile nella pagina:</p>
+            <a href="javascript:void(0)"
+                onclick="if(window.opener){window.opener.openCookieSettings&&window.opener.openCookieSettings();}else if(window.parent&&window.parent.openCookieSettings){window.parent.openCookieSettings();}else{window.history.back();}"
+                class="manage-btn">
+                Gestisci Preferenze Cookie
+            </a>
+
+            <h3>4.2 Tramite le impostazioni del browser</h3>
+            <p>Puoi anche gestire, bloccare o eliminare i cookie direttamente dalle impostazioni del tuo browser:</p>
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google
+                        Chrome</a></li>
+                <li><a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank"
+                        rel="noopener">Mozilla Firefox</a></li>
+                <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank"
+                        rel="noopener">Apple Safari</a></li>
+                <li><a href="https://support.microsoft.com/it-it/windows/eliminare-e-gestire-i-cookie-168dab11-0753-043d-7c16-ede5947fc64d"
+                        target="_blank" rel="noopener">Microsoft Edge</a></li>
+            </ul>
+            <p>La disabilitazione dei cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+
+            <h3>4.3 Opt-out Google Analytics</h3>
+            <p>Per disattivare il tracciamento di Google Analytics su tutti i siti web, puoi installare il componente
+                aggiuntivo del browser disponibile su: <a href="https://tools.google.com/dlpage/gaoptout"
+                    target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a></p>
+        </section>
+
+        <!-- 5 -->
+        <section class="doc-section" id="terze-parti">
+            <h2><span class="num">5</span> Cookie di Terze Parti</h2>
+            <p>Il sito potrebbe incorporare contenuti o script di terze parti (es. Google Fonts, CDN per librerie
+                JavaScript) che potrebbero installare propri cookie. Per informazioni sul trattamento dei dati da parte
+                di questi soggetti, si rimanda alle rispettive informative:</p>
+            <ul>
+                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy
+                        Policy</a> (Fonts, Analytics)</li>
+                <li><a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Unsplash Privacy Policy</a>
+                    (immagini)</li>
+                <li><a href="https://greensock.com/privacy-policy/" target="_blank" rel="noopener">GSAP / GreenSock
+                        Privacy Policy</a></li>
+            </ul>
+            <p>Il Titolare non è responsabile del trattamento dei dati da parte di questi soggetti terzi.</p>
+        </section>
+
+        <!-- 6 -->
+        <section class="doc-section" id="aggiornamenti">
+            <h2><span class="num">6</span> Aggiornamenti alla Policy</h2>
+            <p>La presente Cookie Policy può essere aggiornata periodicamente per riflettere modifiche al sito, alle
+                tecnologie utilizzate o alla normativa applicabile. La data dell'ultimo aggiornamento è indicata in cima
+                alla pagina. In caso di modifiche sostanziali, verrà mostrato un apposito avviso sul sito.</p>
+            <p>Per qualsiasi domanda su questa Cookie Policy, contattaci a: <a
+                    href="mailto:solieriassicurazioni@gmail.com"><strong>solieriassicurazioni@gmail.com</strong></a>
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" role="contentinfo">
+        © 2026 Solieri Assicurazioni &nbsp;·&nbsp; P.IVA 02581110232 &nbsp;·&nbsp; RUI IVASS n. E000097327 (Sez. E)<br>
+        <a href="index.html">Home</a> &nbsp;·&nbsp;
+        <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="mailto:solieriassicurazioni@gmail.com">solieriassicurazioni@gmail.com</a>
+    </footer>
+
+</body>
+
+</html>
