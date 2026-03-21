@@ -55,61 +55,20 @@
                 <img src="Logo Kina.png" alt="Logo Solieri Assicurazioni" class="logo-img" aria-hidden="true">
                 <span class="logo-text">Solieri Assicurazioni</span>
             </a>
-            <nav aria-label="Navigazione principale" class="main-nav">
-                <a href="https://www.google.com/search?q=axa+solieri&oq=axa+solieri&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCDUyOTFqMGo3qAIIsAIB8QUyQhS8c1PNYPEFMkIUvHNTzWA&sourceid=chrome&ie=UTF-8#vhid=/g/12hk3jz4g&vssid=lcl"
-                    target="_blank" rel="noopener noreferrer"
-                    style="color: var(--text-main); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px;">
-                    <svg viewBox="0 0 24 24" width="16" height="16">
-                        <path
-                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                            fill="#4285F4" />
-                        <path
-                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                            fill="#34A853" />
-                        <path
-                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                            fill="#FBBC05" />
-                        <path
-                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                            fill="#EA4335" />
-                    </svg>
-                    Google Review
-                </a>
-                <div class="dropdown">
-                    <button class="dropdown-toggle" aria-expanded="false" aria-controls="polizze-menu">
-                        Polizze
-                        <svg class="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <ul class="dropdown-menu" id="polizze-menu">
-                        <li>
-                            <a href="#polizza-casa">Casa</a>
-                            <ul class="sub-menu">
-                                <li><a href="#casa-incendio">Incendio e Scoppio</a></li>
-                                <li><a href="#casa-furto">Furto e Rapina</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#polizza-auto">Auto</a>
-                            <ul class="sub-menu">
-                                <li><a href="#auto-rca">RCA Obbligatoria</a></li>
-                                <li><a href="#auto-kasko">Kasko e Collisione</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#polizza-vita">Vita</a>
-                            <ul class="sub-menu">
-                                <li><a href="#vita-risparmio">Risparmio</a></li>
-                                <li><a href="#vita-protezione">Protezione Famiglia</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+            <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="main-nav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <nav aria-label="Navigazione principale" class="main-nav" id="main-nav">
+                <a href="#casa" class="nav-link">Casa</a>
+                <a href="#auto" class="nav-link">Auto</a>
+                <a href="#vita" class="nav-link">Vita e Salute</a>
                 <a href="#contact-section" class="btn btn-primary" aria-label="Richiedi informazioni">Contattaci</a>
-            </nav>
-        </div>
+            </nav </div>
     </header>
 
     <main id="main-content">
@@ -118,15 +77,15 @@
         <section class="hero observer-section">
             <div class="container hero-layout">
                 <div class="hero-text fade-up">
-                    <span class="hero-badge">Agenzia AXA dal 1970</span>
                     <h1 class="hero-title">Protezione su misura, <br>pensata per te.</h1>
                     <p class="hero-subtitle">Siamo un'agenzia vicina alle tue esigenze. Scopri come tutelare la tua
                         salute, l'auto e la casa con semplicità e trasparenza.</p>
-                    <div class="hero-actions">
+                    <div class="hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
                         <a href="#contact-section" class="btn btn-primary">Fatti consigliare</a>
                         <a href="https://www.google.com/search?q=axa+solieri&oq=axa+solieri&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCDUyOTFqMGo3qAIIsAIB8QUyQhS8c1PNYPEFMkIUvHNTzWA&sourceid=chrome&ie=UTF-8#vhid=/g/12hk3jz4g&vssid=lcl"
-                            target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+                            target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+                            style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                                 <path
                                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                                     fill="#4285F4" />
@@ -144,9 +103,14 @@
                         </a>
                     </div>
                 </div>
-                <div class="hero-image fade-in delay-200">
-                    <div class="hero-image-wrapper">
-                        <img src="Kina Landing_2.png" alt="Rag. Nicola Solieri – Agente Solieri Assicurazioni" class="hero-img">
+                <div class="hero-image fade-in delay-200" aria-hidden="true">
+                    <div class="hero-img-wrapper"
+                        style="width: 100%; display: flex; align-items: center; justify-content: center; position: relative; min-height: 400px;">
+                        <div
+                            style="position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,143,0.04) 0%, transparent 70%); border-radius: 12px; z-index: -1;">
+                        </div>
+                        <img src="nicola_solieri.png" alt="Agente Assicurativo Nicola Solieri"
+                            style="max-width: 100%; height: auto; max-height: 500px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); object-fit: contain; display: block;">
                     </div>
                 </div>
             </div>
@@ -162,7 +126,7 @@
 
                 <div class="policies-grid">
                     <!-- Card Casa -->
-                    <div id="polizza-casa" class="policy-card fade-up delay-100">
+                    <div class="policy-card fade-up delay-100">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -174,7 +138,7 @@
                         <p class="policy-desc">
                             Proteggi il tuo bene più prezioso da incendi, furti, danni atmosferici e responsabilità
                             civile verso terzi.
-                            
+                            <em>(Inserisci qui la tua descrizione personalizzata e i vantaggi specifici)</em>
                         </p>
                         <ul class="policy-features">
                             <li>Incendio e Scoppio</li>
@@ -186,7 +150,7 @@
                     </div>
 
                     <!-- Card Auto -->
-                    <div id="polizza-auto" class="policy-card fade-up delay-200">
+                    <div class="policy-card fade-up delay-200">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -200,7 +164,7 @@
                         <p class="policy-desc">
                             Viaggia in totale sicurezza con coperture complete su misura per il tuo veicolo e per i
                             passeggeri.
-                            
+                            <em>(Inserisci qui la tua descrizione personalizzata e i vantaggi specifici)</em>
                         </p>
                         <ul class="policy-features">
                             <li>RCA Obbligatoria</li>
@@ -212,7 +176,7 @@
                     </div>
 
                     <!-- Card Vita -->
-                    <div id="polizza-vita" class="policy-card fade-up delay-300">
+                    <div class="policy-card fade-up delay-300">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -225,7 +189,7 @@
                         <p class="policy-desc">
                             Garantisci un futuro sereno a te e ai tuoi cari, tutelando il tenore di vita in caso di
                             imprevisti.
-                            
+                            <em>(Inserisci qui la tua descrizione personalizzata e i vantaggi specifici)</em>
                         </p>
                         <ul class="policy-features">
                             <li>Temporary Caso Morte (TCM)</li>
@@ -323,25 +287,27 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content" style="flex-direction: column; text-align: center; gap: 16px;">
-            <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 8px;">
-                <strong>Solieri Assicurazioni – Rag. Nicola Solieri</strong><br>
-                Sede: Via Belfiore, 66 – 37135 Cadidavid (VR) | P.IVA 02581110232<br>
-                Iscritto al RUI (Registro Unico Intermediari IVASS) n. <strong>E000097327</strong> – Sez. E &middot; <a
+        <div class="container footer-content" style="flex-direction: column; text-align: center; gap: 24px;">
+            <div style="font-size: 0.9rem; opacity: 0.9; line-height: 1.8;">
+                <strong>Solieri Assicurazioni</strong><br>
+                Via Belfiore 66, 37135 Cadidavid (VR) &middot; P.IVA 02581110232<br>
+                RUI IVASS n. <strong>E000097327</strong> (<a
                     href="https://www.ivass.it/consumatori/per-le-persone/strumenti-a-tua-disposizione/trova-un-intermediario/"
-                    target="_blank" rel="noopener" style="color: white; text-decoration: underline;">Verifica su
-                    ivass.it</a><br>
-                Tel: 045 856 8483 &middot; Mobile: 347 239 4039 | E-mail: <a
-                    href="mailto:solieriassicurazioni@gmail.com"
-                    style="color: white;">solieriassicurazioni@gmail.com</a> &middot; PEC: <a
-                    href="mailto:Solieriassicurazioni@pec.it" style="color: white;">Solieriassicurazioni@pec.it</a>
+                    target="_blank" rel="noopener" style="color: white; text-decoration: underline;">Verifica</a>)<br>
+                045 856 8483 &middot; 347 239 4039<br>
+                <a href="mailto:solieriassicurazioni@gmail.com"
+                    style="color: white; text-decoration: none;">solieriassicurazioni@gmail.com</a> &middot; <a
+                    href="mailto:Solieriassicurazioni@pec.it"
+                    style="color: white; text-decoration: none;">Solieriassicurazioni@pec.it</a>
             </div>
 
-            <p>&copy; 2026 Agenzia “Solieri” – Tutti i diritti riservati.</p>
-            <div class="footer-links" style="margin-top: 8px;">
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="cookie-policy.html">Cookie Policy</a>
-                <a href="#" id="open-cookie-settings">Gestione Cookie</a>
+            <div class="footer-links" style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
+                <div style="opacity: 0.7;">&copy; 2026 Solieri Assicurazioni. Tutti i diritti riservati.</div>
+                <div>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="#" id="open-cookie-settings">Gestione Cookie</a>
+                </div>
             </div>
         </div>
     </footer>

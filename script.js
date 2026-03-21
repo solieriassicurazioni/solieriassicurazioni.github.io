@@ -63,26 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
 });
 
-// 5. Logic Handler: Nav Dropdown
-document.addEventListener('click', (e) => {
-    const isDropdownButton = e.target.matches('.dropdown-toggle') || e.target.closest('.dropdown-toggle');
+// 5. Logic Handler: Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.getElementById('main-nav');
 
-    if (!isDropdownButton && e.target.closest('.dropdown') != null) return;
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            mainNav.classList.toggle('active');
+        });
 
-    let currentDropdown;
-    if (isDropdownButton) {
-        currentDropdown = e.target.closest('.dropdown');
-        currentDropdown.querySelector('.dropdown-menu').classList.toggle('show');
-        const toggleBtn = currentDropdown.querySelector('.dropdown-toggle');
-        const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', !expanded);
+        // Close menu when a link is clicked
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                mainNav.classList.remove('active');
+            });
+        });
     }
-
-    document.querySelectorAll('.dropdown-menu.show').forEach(dropdown => {
-        if (currentDropdown && dropdown === currentDropdown.querySelector('.dropdown-menu')) return;
-        dropdown.classList.remove('show');
-        dropdown.closest('.dropdown').querySelector('.dropdown-toggle').setAttribute('aria-expanded', false);
-    });
 });
 
 // 6. Cookie Banner Logic
