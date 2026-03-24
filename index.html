@@ -2,882 +2,309 @@
 <html lang="it">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💰 Finanze — Emanuele &amp; Elena</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="Gestisci le finanze di coppia: mutuo, bollette, finanziamenti, entrate e spese." />
-  <link rel="stylesheet" href="css/style.css?v=2" />
-  <style>
-    body.is-locked {
-      overflow: hidden !important;
-      height: 100vh !important;
-    }
-  </style>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <!-- SheetJS (lettura Excel) -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assicurazioni & Consulenza | La Tua Agenzia</title>
+    <meta name="description"
+        content="Protezione semplice e sicura per te e la tua famiglia. Contattaci per un preventivo.">
+
+    <!-- Font simile alla tipografia aziendale europea -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js" defer></script>
 </head>
 
-<body class="is-locked">
+<body>
 
-  <!-- Password Protection Overlay -->
-  <div id="password-overlay"
-    style="position:fixed;top:0;left:0;width:100%;height:100%;background:#f4f7f6;z-index:999999;display:flex;align-items:center;justify-content:center;padding:2rem;transition:opacity 0.3s ease;">
-    <div
-      style="max-width:400px;width:100%;padding:3rem 2.5rem;text-align:center;background:#fff;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.05);">
-      <div style="font-size:3rem;margin-bottom:1rem;">💰</div>
-      <h2 style="font-family:inherit;font-weight:700;font-size:1.5rem;margin-bottom:0.2rem;color:#2c3e50;">Finanze
-        Familiari</h2>
-      <div style="font-size:1.1rem;font-weight:600;color:var(--primary, #6366f1);margin-bottom:0.8rem;">Emanuele &amp;
-        Elena</div>
+    <!-- Hidden text for screen readers (skip link) -->
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
 
-      <div id="overlay-last-login"
-        style="margin-bottom: 20px; font-size: 0.9rem; color: #7f8c8d; background: #f8fafc; padding: 8px; border-radius: 8px; display: none;">
-        Ultimo accesso: <strong id="overlay-last-login-name">Nessuno</strong>
-      </div>
 
-      <p style="margin-bottom:1.2rem;color:#7f8c8d;font-size:0.95rem;line-height:1.5;">Chi sei?</p>
 
-      <div style="display:flex;gap:10px;margin-bottom:1.5rem;">
-        <button id="overlay-user-1" onclick="overlaySelectUser(1)"
-          style="flex:1;cursor:pointer;padding:0.75rem;border:2px solid #e2e8f0;border-radius:10px;background:#fff;font-size:1rem;font-weight:600;color:#2c3e50;transition:all 0.2s;">
-          👤 Emanuele
-        </button>
-        <button id="overlay-user-2" onclick="overlaySelectUser(2)"
-          style="flex:1;cursor:pointer;padding:0.75rem;border:2px solid #e2e8f0;border-radius:10px;background:#fff;font-size:1rem;font-weight:600;color:#2c3e50;transition:all 0.2s;">
-          👤 Elena
-        </button>
-      </div>
-
-      <p style="margin-bottom:0.8rem;color:#7f8c8d;font-size:0.9rem;">Inserisci la password per accedere.</p>
-
-      <input type="password" id="overlay-pwd" placeholder="Password"
-        style="width:100%;padding:0.9rem 1rem;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:1rem;font-size:1rem;outline:none;box-sizing:border-box;transition:border-color 0.2s;"
-        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'" />
-
-      <button id="overlay-btn"
-        style="width:100%;cursor:pointer;padding:0.9rem;display:flex;justify-content:center;align-items:center;gap:0.5rem;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;font-size:1rem;">Accedi
-        <span aria-hidden="true">→</span></button>
-
-      <p id="overlay-err" style="color:#ef4444;font-size:0.85rem;margin-top:1rem;display:none;font-weight:500;">Password
-        errata, riprova.</p>
-    </div>
-  </div>
-
-  <!-- ───────────────── SIDEBAR ───────────────────────────────── -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">💰</div>
-      <div class="sidebar-logo-text">
-        <h1>Finanze<br>Famigliari</h1>
-        <span>Gestione di coppia</span>
-      </div>
-    </div>
-
-    <div class="sidebar-section-label">Panoramica</div>
-    <div class="nav-item active" data-page="dashboard">
-      <span class="nav-icon">🏠</span> Dashboard
-    </div>
-
-    <div class="sidebar-section-label">Gestione</div>
-    <div class="nav-item" data-page="costifissi">
-      <span class="nav-icon">💳</span> Costi Fissi
-    </div>
-    <div class="nav-item" data-page="finanziamenti">
-      <span class="nav-icon">📊</span> Finanziamenti
-    </div>
-    <div class="nav-item" data-page="entrate">
-      <span class="nav-icon">💼</span> Entrate
-    </div>
-    <div class="nav-item" data-page="transazioni">
-      <span class="nav-icon">📋</span> Transazioni
-    </div>
-
-    <div class="sidebar-section-label">Altro</div>
-    <div class="nav-item" data-page="impostazioni">
-      <span class="nav-icon">⚙️</span> Impostazioni
-    </div>
-
-    <div class="sidebar-footer">
-      <div class="sidebar-users">
-        <div class="avatar avatar-1" id="sidebar-user1">T</div>
-        <div class="avatar avatar-2" id="sidebar-user2">L</div>
-        <span id="sidebar-users-label">Emanuele &amp; Elena</span>
-      </div>
-      <!-- Chi sta usando l'app? -->
-      <div style="margin-top:10px;font-size:11px;color:var(--text-dim);margin-bottom:4px;">Accesso attuale:</div>
-      <div id="current-user-display"
-        style="padding:8px; border-radius:6px; background:rgba(99,102,241,.15); color:var(--accent-light); font-size:13px; font-weight:600; text-align:center; margin-bottom:8px;">
-        👤 Emanuele
-      </div>
-      <div style="margin-top:4px;">
-        <span class="file-badge disconnected" id="fb-status-badge">○ Connessione...</span>
-      </div>
-      <!-- Tasto Esci -->
-      <div style="margin-top:10px;">
-        <button id="logout-btn" class="btn btn-outline btn-sm"
-          style="width:100%;font-size:12px;color:var(--pink);border-color:var(--pink);">🔒 Esci / Blocca app</button>
-      </div>
-    </div>
-    </div>
-  </aside>
-
-  <!-- Mobile hamburger & backdrop -->
-  <button class="hamburger" id="hamburger">☰</button>
-  <div class="sidebar-backdrop"></div>
-
-  <!-- ───────────────── MAIN ──────────────────────────────────── -->
-  <main class="main">
-
-    <!-- ═══════════ DASHBOARD ══════════════════════════════════ -->
-    <div class="page active" id="page-dashboard">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Dashboard <span>Mensile</span></div>
-          <div class="page-subtitle" id="dash-subtitle"></div>
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="brand-logo" aria-label="Home page Solieri Assicurazioni">
+                <img src="Logo Kina.png" alt="Logo Solieri Assicurazioni" class="logo-img" aria-hidden="true">
+                <span class="logo-text">Solieri Assicurazioni</span>
+            </a>
+            <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="main-nav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <nav aria-label="Navigazione principale" class="main-nav" id="main-nav">
+                <a href="#casa" class="nav-link">
+                    <span class="nav-title">Casa</span>
+                    <span class="nav-desc">Immobile e famiglia</span>
+                </a>
+                <a href="#auto" class="nav-link">
+                    <span class="nav-title">Auto</span>
+                    <span class="nav-desc">RCA e garanzie</span>
+                </a>
+                <a href="#vita" class="nav-link">
+                    <span class="nav-title">Vita e Salute</span>
+                    <span class="nav-desc">Futuro e benessere</span>
+                </a>
+                <a href="#contact-section" class="btn btn-primary" aria-label="Richiedi informazioni">Contattaci</a>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <div class="alert-banner" id="dash-alert">
-        <span></span>
-      </div>
+    <main id="main-content">
 
-      <!-- I Nostri Conti (Reali) -->
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
-        <h3 style="font-size:16px; font-weight:700; color:var(--text); margin:0;">🏦 I Nostri Conti</h3>
-        <button class="btn btn-outline btn-sm" onclick="openCcModal()" style="font-size:12px; padding:4px 10px;">✏️
-          Aggiorna Saldi</button>
-      </div>
-
-      <div class="kpi-grid" style="margin-bottom:24px;">
-        <div class="kpi-card"
-          style="background:linear-gradient(135deg, rgba(99,102,241,0.08), rgba(99,102,241,0.02)); border-color:rgba(99,102,241,0.2);">
-          <div class="kpi-label" id="cc-name-1">Saldo CC Emanuele</div>
-          <div class="kpi-value positive" id="kpi-cc1" style="color:var(--primary);">€0,00</div>
-          <div class="kpi-sub">Disponibilità attuale</div>
-        </div>
-        <div class="kpi-card"
-          style="background:linear-gradient(135deg, rgba(236,72,153,0.08), rgba(236,72,153,0.02)); border-color:rgba(236,72,153,0.2);">
-          <div class="kpi-label" id="cc-name-2">Saldo CC Elena</div>
-          <div class="kpi-value positive" id="kpi-cc2" style="color:var(--pink);">€0,00</div>
-          <div class="kpi-sub">Disponibilità attuale</div>
-        </div>
-        <div class="kpi-card"
-          style="background:linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02)); border-color:rgba(16,185,129,0.2);">
-          <div class="kpi-label">Patrimonio Totale</div>
-          <div class="kpi-value positive" id="kpi-cc-tot" style="color:var(--success);">€0,00</div>
-          <div class="kpi-sub">Somma conti liquidi</div>
-        </div>
-      </div>
-
-      <h3 style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:12px;">📊 Bilancio Mensile
-        (Previsionale)</h3>
-      <div class="kpi-grid">
-        <div class="kpi-card income">
-          <div class="kpi-icon">💼</div>
-          <div class="kpi-label">Entrate Mensili</div>
-          <div class="kpi-value positive" id="kpi-entrate">€0,00</div>
-          <div class="kpi-sub">Stipendi &amp; altri redditi</div>
-        </div>
-        <div class="kpi-card expense">
-          <div class="kpi-icon">💳</div>
-          <div class="kpi-label">Spese Fisse</div>
-          <div class="kpi-value" style="color:var(--pink)" id="kpi-uscite">€0,00</div>
-          <div class="kpi-sub">Mutuo, bollette, abbonamenti</div>
-        </div>
-        <div class="kpi-card" id="kpi-saldo-card">
-          <div class="kpi-icon">⚖️</div>
-          <div class="kpi-label">Saldo Netto</div>
-          <div class="kpi-value neutral" id="kpi-saldo">€0,00</div>
-          <div class="kpi-sub">Entrate − Uscite fisse</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon">📊</div>
-          <div class="kpi-label">Rate Attive</div>
-          <div class="kpi-value" style="color:var(--warning)" id="kpi-rate">€0,00</div>
-          <div class="kpi-sub">Totale rate mensili</div>
-        </div>
-        <div class="kpi-card expense">
-          <div class="kpi-icon">🗓️</div>
-          <div class="kpi-label">Spese Mese</div>
-          <div class="kpi-value" style="color:var(--pink)" id="kpi-tx-mese">€0,00</div>
-          <div class="kpi-sub" id="kpi-tx-mese-label">Transazioni del mese corrente</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon">💰</div>
-          <div class="kpi-label">Disponibile</div>
-          <div class="kpi-value" id="kpi-disponibile">€0,00</div>
-          <div class="kpi-sub">Saldo netto − spese extra mese</div>
-        </div>
-      </div>
-
-      <div class="charts-grid">
-        <div class="card">
-          <div class="card-title"><span class="dot"></span> Distribuzione Spese</div>
-          <div class="chart-wrap"><canvas id="donut-chart"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="dot"></span> Storico 6 Mesi (Transazioni)</div>
-          <div class="chart-wrap"><canvas id="bar-chart"></canvas></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="dot"></span> Ultime Voci — Costi Fissi</div>
-        <div id="scadenze-list"></div>
-      </div>
-    </div><!-- /dashboard -->
-
-    <!-- ═══════════ COSTI FISSI ════════════════════════════════ -->
-    <div class="page" id="page-costifissi">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Costi <span>Fissi</span></div>
-          <div class="page-subtitle">Mutuo, bollette, abbonamenti ricorrenti</div>
-        </div>
-        <div class="toolbar">
-          <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input class="input" id="cf-search" placeholder="Cerca..." style="width:180px;" />
-          </div>
-          <select class="select" id="cf-filter" style="width:160px;">
-            <option value="">Tutte le categorie</option>
-            <option value="Mutuo">Mutuo</option>
-            <option value="Bollette">Bollette</option>
-            <option value="Abbonamenti">Abbonamenti</option>
-            <option value="Altro">Altro</option>
-          </select>
-          <button class="btn btn-primary" id="cf-add-btn">＋ Aggiungi</button>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Categoria</th>
-              <th>Importo</th>
-              <th>Frequenza</th>
-              <th>Note</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody id="cf-tbody"></tbody>
-          <tfoot>
-            <tr class="total-row">
-              <td colspan="2"><strong>Totale</strong></td>
-              <td id="cf-total" colspan="4">€0,00</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div><!-- /costifissi -->
-
-    <!-- ═══════════ FINANZIAMENTI ══════════════════════════════ -->
-    <div class="page" id="page-finanziamenti">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Finanziamenti <span>in corso</span></div>
-          <div class="page-subtitle">Mutui, prestiti, rate a lungo termine</div>
-        </div>
-        <div class="toolbar">
-          <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input class="input" id="fin-search" placeholder="Cerca..." style="width:180px;" />
-          </div>
-          <button class="btn btn-primary" id="fin-add-btn">＋ Aggiungi</button>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome / Istituto</th>
-              <th>Stato</th>
-              <th>Rata</th>
-              <th>Avanzamento</th>
-              <th>Rate rimaste</th>
-              <th>Fine prevista</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody id="fin-tbody"></tbody>
-          <tfoot>
-            <tr class="total-row">
-              <td colspan="2"><strong>Totale rate mensili attive</strong></td>
-              <td id="fin-total" colspan="5">€0,00</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div><!-- /finanziamenti -->
-
-    <!-- ═══════════ ENTRATE ════════════════════════════════════ -->
-    <div class="page" id="page-entrate">
-      <div class="page-header">
-        <div>
-          <div class="page-title"><span>Entrate</span> Mensili</div>
-          <div class="page-subtitle" id="ent-view-label">Stipendi e tutti gli altri redditi</div>
-        </div>
-        <div class="toolbar">
-          <button class="btn btn-outline" id="ent-toggle-view-btn" onclick="toggleViewMine('ent')"
-            style="font-size:12px;">👥 Mostra tutto</button>
-          <button class="btn btn-primary" id="ent-add-btn">＋ Aggiungi Entrata</button>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Descrizione</th>
-              <th>Tipo</th>
-              <th>Persona</th>
-              <th>Importo Mensile</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody id="ent-tbody"></tbody>
-          <tfoot>
-            <tr class="total-row">
-              <td colspan="3"><strong>Totale Entrate</strong></td>
-              <td id="ent-total" colspan="2">€0,00</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div><!-- /entrate -->
-
-    <!-- ═══════════ TRANSAZIONI ════════════════════════════════ -->
-    <div class="page" id="page-transazioni">
-      <div class="page-header">
-        <div>
-          <div class="page-title">Storico <span>Transazioni</span></div>
-          <div class="page-subtitle" id="tx-view-label">Tutti i movimenti extra registrati</div>
-        </div>
-        <div class="toolbar">
-          <button class="btn btn-outline" id="tx-toggle-view-btn" onclick="toggleViewMine('tx')"
-            style="font-size:12px;">👥 Mostra tutto</button>
-          <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input class="input" id="tx-search" placeholder="Cerca..." style="width:160px;" />
-          </div>
-          <select class="select" id="tx-filter-tipo" style="width:130px;">
-            <option value="">Tutti</option>
-            <option value="entrata">Entrate</option>
-            <option value="uscita">Uscite</option>
-          </select>
-          <select class="select" id="tx-filter-mese" style="width:150px;">
-            <option value="">Tutti i mesi</option>
-          </select>
-          <button class="btn btn-outline" id="tx-export-csv">📥 CSV</button>
-          <button class="btn btn-outline" id="tx-import-excel-btn" title="Importa da Excel">📊 Importa Excel</button>
-          <input type="file" id="tx-import-excel-file" accept=".xlsx,.xls" style="display:none" />
-          <button class="btn btn-outline" id="tx-group-btn" title="Raggruppa per categoria">🗂️ Raggruppa</button>
-          <button class="btn btn-danger" id="tx-delete-selected-btn" style="display:none;">🗑️ Elimina selezionati
-            (<span id="tx-selected-count">0</span>)</button>
-          <button class="btn btn-danger" id="tx-delete-all-btn" title="Elimina TUTTE le transazioni">🗑️ Elimina
-            tutto</button>
-          <button class="btn btn-primary" id="tx-add-btn">＋ Aggiungi</button>
-        </div>
-      </div>
-
-      <!-- Grafico categorie (visibile solo in modalità Raggruppa) -->
-      <div id="tx-chart-wrap" style="display:none; padding:20px 0 10px;">
-        <canvas id="tx-cat-chart" style="max-height:340px;"></canvas>
-      </div>
-
-      <div class="table-wrap" id="tx-table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:36px;"><input type="checkbox" id="tx-select-all" title="Seleziona tutti" /></th>
-              <th>Data</th>
-              <th>Descrizione / Categoria</th>
-              <th>Persona</th>
-              <th>Tipo</th>
-              <th>Importo</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody id="tx-tbody"></tbody>
-          <tfoot id="tx-tfoot"></tfoot>
-        </table>
-      </div>
-    </div><!-- /transazioni -->
-
-    <!-- ═══════════ IMPOSTAZIONI ═══════════════════════════════ -->
-    <div class="page" id="page-impostazioni">
-      <div class="page-header">
-        <div>
-          <div class="page-title">⚙️ <span>Impostazioni</span></div>
-          <div class="page-subtitle">Personalizza l'app e gestisci i dati</div>
-        </div>
-      </div>
-
-      <div class="settings-grid">
-        <!-- Utenti -->
-        <div class="settings-card">
-          <h3>👥 Utenti</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div class="field-group">
-              <label class="field-label">Nome utente 1 (tu)</label>
-              <input class="input" id="set-user1" placeholder="Il tuo nome" />
+        <!-- HERO SECTION -->
+        <section class="hero observer-section">
+            <div class="container hero-layout">
+                <div class="hero-text fade-up">
+                    <h1 class="hero-title">Protezione su misura, <br>pensata per te.</h1>
+                    <p class="hero-subtitle">Siamo un'agenzia vicina alle tue esigenze. Scopri come tutelare la tua
+                        salute, l'auto e la casa con semplicità e trasparenza.</p>
+                    <div class="hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <a href="#contact-section" class="btn btn-primary">Fatti consigliare</a>
+                        <a href="https://www.google.com/search?q=axa+solieri&oq=axa+solieri&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCDUyOTFqMGo3qAIIsAIB8QUyQhS8c1PNYPEFMkIUvHNTzWA&sourceid=chrome&ie=UTF-8#vhid=/g/12hk3jz4g&vssid=lcl"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+                            style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                    fill="#4285F4" />
+                                <path
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                    fill="#34A853" />
+                                <path
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                    fill="#FBBC05" />
+                                <path
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                    fill="#EA4335" />
+                            </svg>
+                            Leggi le Recensioni
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="field-group">
-              <label class="field-label">Nome utente 2 (lei)</label>
-              <input class="input" id="set-user2" placeholder="Il suo nome" />
+        </section>
+
+        <!-- INTERACTIVE POLICIES SECTION -->
+        <section id="polizze-section" class="policies observer-section">
+            <div class="container">
+                <div class="policies-header fade-up">
+                    <h2>Le Nostre Soluzioni</h2>
+                    <p>Scegli l'area di tuo interesse per scoprire i dettagli e le garanzie offerte.</p>
+                </div>
+
+                <div class="policies-grid">
+                    <!-- Card Casa -->
+                    <div id="casa" class="policy-card fade-up delay-100">
+                        <div class="policy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Polizza Casa</h3>
+                        <p class="policy-desc">
+                            Proteggi il tuo bene più prezioso da incendi, furti, danni atmosferici e responsabilità
+                            civile verso terzi.
+                        </p>
+                        <ul class="policy-features">
+                            <li>Incendio e Scoppio</li>
+                            <li>Furto e Rapina</li>
+                            <li>Eventi Atmosferici</li>
+                            <li>Responsabilità Civile</li>
+                        </ul>
+                        <a href="#contact-section" class="btn btn-outline btn-sm">Richiedi Info</a>
+                    </div>
+
+                    <!-- Card Auto -->
+                    <div id="auto" class="policy-card fade-up delay-200">
+                        <div class="policy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="3" width="15" height="13"></rect>
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                            </svg>
+                        </div>
+                        <h3>Polizza Auto</h3>
+                        <p class="policy-desc">
+                            Viaggia in totale sicurezza con coperture complete su misura per il tuo veicolo e per i
+                            passeggeri.
+                        </p>
+                        <ul class="policy-features">
+                            <li>RCA Obbligatoria</li>
+                            <li>Furto e Incendio</li>
+                            <li>Kasko e Mini-Kasko</li>
+                            <li>Tutela Legale e Assistenza</li>
+                        </ul>
+                        <a href="#contact-section" class="btn btn-outline btn-sm">Richiedi Info</a>
+                    </div>
+
+                    <!-- Card Vita -->
+                    <div id="vita" class="policy-card fade-up delay-300">
+                        <div class="policy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3>Polizza Vita e Salute</h3>
+                        <p class="policy-desc">
+                            Garantisci un futuro sereno a te e ai tuoi cari, tutelando il tenore di vita in caso di
+                            imprevisti.
+                        </p>
+                        <ul class="policy-features">
+                            <li>Temporary Caso Morte (TCM)</li>
+                            <li>Rimborso Spese Mediche</li>
+                            <li>Prevenzione e Telemedicina</li>
+                            <li>Piani di Risparmio</li>
+                        </ul>
+                        <a href="#contact-section" class="btn btn-outline btn-sm">Richiedi Info</a>
+                    </div>
+                </div>
             </div>
-            <div class="field-group">
-              <label class="field-label">Valuta</label>
-              <select class="select" id="set-currency">
-                <option value="€">€ Euro</option>
-                <option value="$">$ Dollaro</option>
-                <option value="£">£ Sterlina</option>
-              </select>
+        </section>
+
+        <!-- GOOGLE REVIEW SECTION -->
+        <section class="review-promo observer-section">
+            <div class="container">
+                <div class="review-box fade-up">
+                    <div class="review-content">
+                        <h2><span style="color: #FBBC05;">★</span> La tua opinione ti premia!</h2>
+                        <p>Lascia una recensione su Google e ricevi uno <strong>Sconto Esclusivo</strong> sulla tua
+                            prossima polizza o rinnovo in agenzia. Ci vogliono solo 30 secondi.</p>
+                        <a href="https://www.google.com/search?q=axa+solieri&oq=axa+solieri&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCDUyOTFqMGo3qAIIsAIB8QUyQhS8c1PNYPEFMkIUvHNTzWA&sourceid=chrome&ie=UTF-8#vhid=/g/12hk3jz4g&vssid=lcl"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+                            style="background-color: #4285F4; border-color: #4285F4; display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                    fill="#fff" />
+                                <path
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                    fill="#fff" />
+                                <path
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                    fill="#fff" />
+                                <path
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                    fill="#fff" />
+                            </svg>
+                            Scrivi una Recensione
+                        </a>
+                        <p class="review-terms">Mostra la recensione pubblicata al nostro team in agenzia per attivare
+                            lo sconto.</p>
+                    </div>
+                </div>
             </div>
-            <div class="field-group">
-              <label class="field-label" id="lbl-set-cc1">Saldo C/C Utente 1</label>
-              <input class="input" type="number" step="0.01" id="set-cc1" placeholder="Es: 1540.50" />
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="contact observer-section bg-light">
+            <div class="container">
+                <div class="contact-header fade-up">
+                    <h2>Parla subito con noi</h2>
+                    <p>Scegli il canale che preferisci per un consulto veloce e senza impegno.</p>
+                </div>
+
+                <div class="contact-methods fade-up delay-200">
+
+                    <!-- Email Action -->
+                    <div class="contact-card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>Invia un'Email</h3>
+                        <p>Scrivici i tuoi dubbi, ti risponderemo entro 24 ore.</p>
+                        <button class="btn btn-outline" id="btn-email"
+                            aria-label="Scrivi una mail alla nostra agenzia">Scrivi Mail</button>
+                    </div>
+
+                    <!-- WhatsApp Action -->
+                    <div class="contact-card">
+                        <div class="card-icon text-green" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Per una risposta istantanea usa WhatsApp Web o App.</p>
+                        <button class="btn btn-primary bg-green" id="btn-wa"
+                            aria-label="Avvia una chat WhatsApp con l'agenzia">Avvia Chat</button>
+                    </div>
+
+                </div>
             </div>
-            <div class="field-group">
-              <label class="field-label" id="lbl-set-cc2">Saldo C/C Utente 2</label>
-              <input class="input" type="number" step="0.01" id="set-cc2" placeholder="Es: 3200.00" />
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content" style="flex-direction: column; text-align: center; gap: 24px;">
+            <div style="font-size: 0.9rem; opacity: 0.9; line-height: 1.8;">
+                <strong>Solieri Assicurazioni</strong><br>
+                Via Belfiore 66, 37135 Cadidavid (VR) &middot; P.IVA 02581110232<br>
+                RUI IVASS n. <strong>E000097327</strong> (<a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home"
+                    target="_blank" rel="noopener" style="color: white; text-decoration: underline;">Verifica</a>)<br>
+                045 856 8483 &middot; 347 239 4039<br>
+                <a href="mailto:solieriassicurazioni@gmail.com"
+                    style="color: white; text-decoration: none;">solieriassicurazioni@gmail.com</a> &middot; <a
+                    href="mailto:Solieriassicurazioni@pec.it"
+                    style="color: white; text-decoration: none;">Solieriassicurazioni@pec.it</a>
             </div>
-            <button class="btn btn-primary" id="set-save-btn">💾 Salva Impostazioni</button>
-          </div>
-        </div>
 
-        <!-- Firebase Status -->
-        <div class="settings-card gdrive-card">
-          <h3>🔥 Sincronizzazione Firebase</h3>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;line-height:1.6;">
-            I dati sono salvati su <strong style="color:var(--accent-light)">Firebase Realtime Database</strong>.
-            Ogni modifica è visibile istantaneamente su tutti i dispositivi. Basta condividere il link dell'app!
-          </p>
-          <div
-            style="background:rgba(99,102,241,.08);border:1px solid var(--border);border-radius:10px;padding:13px 16px;margin-bottom:16px;">
-            <div style="display:flex;align-items:center;gap:10px;font-size:13px;">
-              <span class="file-badge disconnected" id="fb-status-badge-settings">○ Connessione...</span>
+            <div class="footer-links" style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
+                <div style="opacity: 0.7;">&copy; 2026 Solieri Assicurazioni. Tutti i diritti riservati.</div>
+                <div>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="#" id="open-cookie-settings">Gestione Cookie</a>
+                </div>
             </div>
-            <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">Database: <code
-                style="color:var(--accent-light)">finanze-web-default-rtdb</code></div>
-          </div>
-          <p style="font-size:12px;color:var(--text-dim);line-height:1.6;">✅ Modifiche sincronizzate in tempo reale<br>✅
-            Funziona su PC, telefono e tablet<br>✅ Backup automatico sempre attivo</p>
         </div>
+    </footer>
 
-        <!-- Backup manuale -->
-        <div class="settings-card">
-          <h3>📦 Backup Manuale</h3>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
-            Esporta o importa i dati come file JSON (utile come backup o su browser che non supportano File System API).
-          </p>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <button class="btn btn-outline" id="set-export-btn">📤 Esporta JSON</button>
-            <label class="btn btn-outline" style="cursor:pointer;">
-              📥 Importa JSON
-              <input type="file" id="set-import-file" accept=".json" style="display:none;" />
-            </label>
-          </div>
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner"
+        style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 9999; padding: 24px; border-top: 2px solid var(--axa-blue);">
+        <div class="container" style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+                <h3 style="color: var(--axa-blue); margin-bottom: 8px;">Informativa sui Cookie</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Utilizziamo cookie tecnici per il
+                    funzionamento del sito e, previo tuo consenso, cookie analitici per migliorare la tua esperienza. <a
+                        href="cookie-policy.html" style="color: var(--axa-blue); text-decoration: underline;">Scopri di
+                        più</a>.</p>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button id="cookie-accept-all" class="btn btn-primary bg-green"
+                    style="padding: 8px 16px; font-size: 0.9rem;">Accetta Tutti</button>
+                <button id="cookie-reject-optional" class="btn btn-outline"
+                    style="padding: 8px 16px; font-size: 0.9rem;">Rifiuta Opzionali</button>
+            </div>
         </div>
-
-        <!-- Reset -->
-        <div class="settings-card">
-          <h3>⚠️ Zona Pericolosa</h3>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
-            Questa azione eliminerà TUTTI i dati salvati in modo irreversibile.
-          </p>
-          <button class="btn btn-danger" id="set-reset-btn">🗑️ Azzera Tutti i Dati</button>
-        </div>
-
-        <!-- Come funziona -->
-        <div class="settings-card">
-          <h3>ℹ️ Come funziona la sincronizzazione</h3>
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.8;">
-            <strong style="color:var(--accent-light)">Prima volta (uno solo):</strong><br>
-            1. Clicca <em>Crea nuovo file JSON</em> → scegli la cartella Google Drive condivisa → dai un nome (es.
-            <code>finanze_famigliari.json</code>)<br><br>
-            <strong style="color:var(--accent-light)">L'altra persona:</strong><br>
-            2. Aprire l'app → Impostazioni → <em>Apri file esistente</em> → seleziona lo stesso file dalla cartella
-            Drive<br><br>
-            <strong style="color:var(--accent-light)">Uso quotidiano:</strong><br>
-            3. Ogni modifica scrive automaticamente sul file → Drive sincronizza → l'altro vede i dati aggiornati! Usa
-            🔄 per ricaricare i dati se l'altro ha fatto modifiche.
-          </p>
-        </div>
-      </div>
-    </div><!-- /impostazioni -->
-
-  </main><!-- /main -->
-
-  <!-- ═══════════════ MODALS ══════════════════════════════════ -->
-
-  <!-- Modal Costi Fissi -->
-  <div class="modal-overlay" id="cf-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="cf-modal-title">Nuovo Costo Fisso</div>
-        <button class="modal-close" id="cf-cancel-btn">✕</button>
-      </div>
-      <form id="cf-form" onsubmit="return false;">
-        <div class="form-grid">
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Nome *</label>
-            <input class="input" id="cf-nome" placeholder="Es: Mutuo Prima Casa, Luce, Netflix..." required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Categoria *</label>
-            <select class="select" id="cf-categoria">
-              <option value="Mutuo">🏠 Mutuo</option>
-              <option value="Bollette">⚡ Bollette</option>
-              <option value="Abbonamenti">📺 Abbonamenti</option>
-              <option value="Altro">📌 Altro</option>
-            </select>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Importo (€) *</label>
-            <input class="input" id="cf-importo" type="number" step="0.01" min="0" placeholder="0,00" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Frequenza</label>
-            <select class="select" id="cf-frequenza">
-              <option value="Mensile">Mensile</option>
-              <option value="Bimestrale">Bimestrale</option>
-              <option value="Trimestrale">Trimestrale</option>
-              <option value="Annuale">Annuale</option>
-            </select>
-          </div>
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Note</label>
-            <input class="input" id="cf-note" placeholder="Note opzionali..." />
-          </div>
-        </div>
-      </form>
-      <div class="modal-footer">
-        <button class="btn btn-outline" id="cf-cancel-btn2"
-          onclick="document.getElementById('cf-modal').classList.remove('open'); cfEditId=null;">Annulla</button>
-        <button class="btn btn-primary" id="cf-save-btn">💾 Salva</button>
-      </div>
     </div>
-  </div>
 
-  <!-- Modal Finanziamenti -->
-  <div class="modal-overlay" id="fin-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="fin-modal-title">Nuovo Finanziamento</div>
-        <button class="modal-close" id="fin-cancel-btn">✕</button>
-      </div>
-      <form id="fin-form" onsubmit="return false;">
-        <div class="form-grid">
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Nome finanziamento *</label>
-            <input class="input" id="fin-nome" placeholder="Es: Mutuo, Prestito Auto, Finanziamento Cucina..."
-              required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Istituto / Banca</label>
-            <input class="input" id="fin-istituto" placeholder="Es: UniCredit, BNL..." />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Rata mensile (€) *</label>
-            <input class="input" id="fin-rata" type="number" step="0.01" min="0" placeholder="0,00" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Rate totali *</label>
-            <input class="input" id="fin-rate-tot" type="number" min="1" placeholder="Es: 240" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Rate rimanenti *</label>
-            <input class="input" id="fin-rate-rim" type="number" min="0" placeholder="Es: 180" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Data fine prevista</label>
-            <input class="input" id="fin-data-fine" type="date" />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Capitale Residuo (€)</label>
-            <input class="input" id="fin-capitale-residuo" type="number" step="0.01" min="0"
-              placeholder="Es: 45000,00" />
-          </div>
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Note</label>
-            <input class="input" id="fin-note" placeholder="Note opzionali..." />
-          </div>
-        </div>
-      </form>
-      <div class="modal-footer">
-        <button class="btn btn-outline"
-          onclick="document.getElementById('fin-modal').classList.remove('open'); finEditId=null;">Annulla</button>
-        <button class="btn btn-primary" id="fin-save-btn">💾 Salva</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Entrate -->
-  <div class="modal-overlay" id="ent-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="ent-modal-title">Nuova Entrata</div>
-        <button class="modal-close" id="ent-cancel-btn">✕</button>
-      </div>
-      <form id="ent-form" onsubmit="return false;">
-        <div class="form-grid">
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Descrizione *</label>
-            <input class="input" id="ent-descrizione" placeholder="Es: Stipendio Marzo, Affitto ricevuto..." required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Tipo</label>
-            <select class="select" id="ent-tipo">
-              <option value="Stipendio">💼 Stipendio</option>
-              <option value="Freelance">💻 Freelance</option>
-              <option value="Affitto percepito">🏠 Affitto percepito</option>
-              <option value="Altro">📌 Altro</option>
-            </select>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Importo mensile (€) *</label>
-            <input class="input" id="ent-importo" type="number" step="0.01" min="0" placeholder="0,00" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Persona</label>
-            <select class="select" id="ent-persona">
-              <option value="Emanuele">Emanuele</option>
-              <option value="Elena">Elena</option>
-              <option value="Comune">Comune</option>
-            </select>
-          </div>
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Note</label>
-            <input class="input" id="ent-note" placeholder="Note opzionali..." />
-          </div>
-        </div>
-      </form>
-      <div class="modal-footer">
-        <button class="btn btn-outline"
-          onclick="document.getElementById('ent-modal').classList.remove('open'); entEditId=null;">Annulla</button>
-        <button class="btn btn-primary" id="ent-save-btn">💾 Salva</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Transazioni -->
-  <div class="modal-overlay" id="tx-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="tx-modal-title">Nuova Transazione</div>
-        <button class="modal-close" id="tx-cancel-btn">✕</button>
-      </div>
-      <form id="tx-form" onsubmit="return false;">
-        <div class="form-grid">
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Descrizione *</label>
-            <input class="input" id="tx-descrizione" placeholder="Es: Cena fuori, Rimborso spesa..." required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Tipo *</label>
-            <select class="select" id="tx-tipo">
-              <option value="uscita">↓ Uscita</option>
-              <option value="entrata">↑ Entrata</option>
-            </select>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Categoria</label>
-            <select class="select" id="tx-categoria">
-              <option value="Spesa">🛒 Spesa alimentare</option>
-              <option value="Ristorante">🍽️ Ristorante</option>
-              <option value="Trasporti">🚗 Trasporti</option>
-              <option value="Salute">💊 Salute</option>
-              <option value="Abbigliamento">👗 Abbigliamento</option>
-              <option value="Svago">🎭 Svago</option>
-              <option value="Regali">🎁 Regali</option>
-              <option value="Casa">🏠 Casa</option>
-              <option value="Rimborso">↩️ Rimborso</option>
-              <option value="Altro">📌 Altro</option>
-            </select>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Importo (€) *</label>
-            <input class="input" id="tx-importo" type="number" step="0.01" min="0" placeholder="0,00" required />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Data</label>
-            <input class="input" id="tx-data" type="date" />
-          </div>
-          <div class="field-group">
-            <label class="field-label">Persona</label>
-            <select class="select" id="tx-persona">
-              <option value="Emanuele">Emanuele</option>
-              <option value="Elena">Elena</option>
-              <option value="Comune">Comune</option>
-            </select>
-          </div>
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label">Note</label>
-            <input class="input" id="tx-note" placeholder="Note opzionali..." />
-          </div>
-        </div>
-      </form>
-      <div class="modal-footer">
-        <button class="btn btn-outline"
-          onclick="document.getElementById('tx-modal').classList.remove('open'); txEditId=null;">Annulla</button>
-        <button class="btn btn-primary" id="tx-save-btn">💾 Salva</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Aggiorna Saldi CC (Quick Edit) -->
-  <div class="modal-overlay" id="cc-modal">
-    <div class="modal" style="max-width:400px;">
-      <div class="modal-header">
-        <div class="modal-title">🏦 Aggiorna Saldi C/C</div>
-        <button class="modal-close" onclick="closeModal('cc-modal')">✕</button>
-      </div>
-      <form id="cc-form" onsubmit="return false;">
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Inserisci le cifre esatte che leggi oggi
-          sui vostri conti in banca per allineare il patrimonio totale.</p>
-        <div class="form-grid">
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label" id="lbl-quick-cc1">Saldo C/C Utente 1 (€)</label>
-            <input class="input" type="number" step="0.01" id="quick-cc1" placeholder="0.00" />
-          </div>
-          <div class="field-group" style="grid-column:1/-1;">
-            <label class="field-label" id="lbl-quick-cc2">Saldo C/C Utente 2 (€)</label>
-            <input class="input" type="number" step="0.01" id="quick-cc2" placeholder="0.00" />
-          </div>
-        </div>
-      </form>
-      <div class="modal-footer">
-        <button class="btn btn-outline" onclick="closeModal('cc-modal')">Annulla</button>
-        <button class="btn btn-primary" id="cc-save-btn" onclick="saveQuickCc()">💾 Aggiorna</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast container -->
-  <div id="toast-container"></div>
-
-  <script src="js/data.js?v=2"></script>
-  <script src="js/charts.js?v=2"></script>
-  <script src="js/app.js?v=2"></script>
-  <script>
-    (function () {
-      const overlay = document.getElementById('password-overlay');
-      const input = document.getElementById('overlay-pwd');
-      const btn = document.getElementById('overlay-btn');
-      const err = document.getElementById('overlay-err');
-      const logoutBtn = document.getElementById('logout-btn');
-      const pwd = 'Bilancio_2026!';
-
-      let selectedUser = 0; // 0 = nessuno selezionato
-
-      // Esposta globalmente per i pulsanti inline
-      window.overlaySelectUser = function (idx) {
-        selectedUser = idx;
-        const b1 = document.getElementById('overlay-user-1');
-        const b2 = document.getElementById('overlay-user-2');
-        const active = 'border-color:#6366f1;background:#eef2ff;color:#6366f1;';
-        const inactive = 'border-color:#e2e8f0;background:#fff;color:#2c3e50;';
-        if (b1) b1.style.cssText += idx === 1 ? active : inactive;
-        if (b2) b2.style.cssText += idx === 2 ? active : inactive;
-        err.style.display = 'none';
-        input.focus();
-      };
-
-      if (sessionStorage.getItem('site_unlocked_fin') === 'true') {
-        document.body.classList.remove('is-locked');
-        if (overlay) overlay.style.display = 'none';
-      } else {
-        // Mostra ultimo accesso se presente in localStorage
-        const lastIdx = parseInt(localStorage.getItem('finanze_current_user') || '0', 10);
-        if (lastIdx > 0) {
-          const ll = document.getElementById('overlay-last-login');
-          const lln = document.getElementById('overlay-last-login-name');
-          if (ll && lln) {
-            ll.style.display = 'block';
-            // Fallback a "Utente", verrà aggiornato meglio da app.js appena si carica Firebase
-            lln.textContent = lastIdx === 1 ? 'Emanuele' : 'Elena';
-          }
-        }
-      }
-
-      function unlock() {
-        if (selectedUser === 0) {
-          err.textContent = 'Seleziona prima chi sei: Emanuele o Elena.';
-          err.style.display = 'block';
-          return;
-        }
-        if (input.value === pwd) {
-          localStorage.setItem('finanze_current_user', String(selectedUser));
-          sessionStorage.setItem('site_unlocked_fin', 'true');
-          document.body.classList.remove('is-locked');
-          overlay.style.display = 'flex';
-          setTimeout(() => {
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 300);
-          }, 10);
-        } else {
-          err.textContent = 'Password errata, riprova.';
-          err.style.display = 'block';
-          input.value = '';
-          input.focus();
-        }
-      }
-
-      function lock() {
-        sessionStorage.removeItem('site_unlocked_fin');
-        selectedUser = 0;
-        input.value = '';
-        err.style.display = 'none';
-        err.textContent = 'Password errata, riprova.';
-        // Reset stile pulsanti utente
-        const b1 = document.getElementById('overlay-user-1');
-        const b2 = document.getElementById('overlay-user-2');
-        const inactive = 'border-color:#e2e8f0;background:#fff;color:#2c3e50;';
-        if (b1) b1.style.cssText += inactive;
-        if (b2) b2.style.cssText += inactive;
-        overlay.style.display = 'flex';
-        setTimeout(() => { overlay.style.opacity = '1'; }, 10);
-        document.body.classList.add('is-locked');
-        // Chiudi sidebar su mobile se aperta
-        document.getElementById('sidebar').classList.remove('open');
-        document.querySelector('.sidebar-backdrop').classList.remove('active');
-      }
-
-      if (btn && input) {
-        btn.addEventListener('click', unlock);
-        input.addEventListener('keypress', function (e) {
-          if (e.key === 'Enter') unlock();
-        });
-        input.addEventListener('input', () => {
-          err.style.display = 'none';
-        });
-      }
-
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', lock);
-      }
-    })();
-  </script>
-  <script>
-    // Set dashboard subtitle with current month
-    document.addEventListener('DOMContentLoaded', () => {
-      const sub = document.getElementById('dash-subtitle');
-      if (sub) {
-        const label = new Date().toLocaleString('it-IT', { month: 'long', year: 'numeric' });
-        sub.textContent = 'Riepilogo di ' + label.charAt(0).toUpperCase() + label.slice(1);
-      }
-    });
-  </script>
 </body>
 
 </html>
