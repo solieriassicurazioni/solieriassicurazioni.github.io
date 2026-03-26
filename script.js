@@ -19,10 +19,8 @@ document.getElementById('btn-email').addEventListener('click', () => {
 
 // 3. Logic Handler: Apri WhatsApp
 document.getElementById('btn-wa').addEventListener('click', () => {
-    // Rileva se su mobile (per aprire l'app WA) o desktop (per aprire WA Web)
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const baseUrl = isMobile ? "whatsapp://send" : "https://web.whatsapp.com/send";
-    const waLink = `${baseUrl}?phone=${CONTACT_CONFIG.WHATSAPP_NUMBER}&text=${encodeURIComponent(CONTACT_CONFIG.WHATSAPP_TEXT)}`;
+    // Usa l'API ufficiale wa.me che gestisce in automatico il redirect cross-platform
+    const waLink = `https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(CONTACT_CONFIG.WHATSAPP_TEXT)}`;
 
     // Usa window.open(..., '_blank') per non abbandonare la landing page
     window.open(waLink, '_blank', 'noopener,noreferrer');
