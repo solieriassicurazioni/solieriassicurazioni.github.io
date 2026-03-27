@@ -41,23 +41,25 @@
                 </svg>
             </button>
             <nav aria-label="Navigazione principale" class="main-nav" id="main-nav">
-                <a href="#auto" class="nav-link">
-                    <span class="nav-title" style="font-size: 0.95rem;">Assicurazione Auto</span>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-btn" aria-haspopup="true" aria-expanded="false">
+                        <span class="nav-title" style="font-size: 1.05rem;">I Nostri Prodotti <svg width="12"
+                                height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#auto" class="dropdown-item">Assicurazione Auto</a>
+                        <a href="#casa" class="dropdown-item">Assicurazione Casa</a>
+                        <a href="#famiglia" class="dropdown-item">Protezione Famiglia</a>
+                        <a href="#aziende" class="dropdown-item">Polizze Aziendali</a>
+                        <a href="#rc" class="dropdown-item">Rc Professionale</a>
+                    </div>
+                </div>
+                <a href="#why-us-section" class="nav-link">
+                    <span class="nav-title" style="font-size: 1.05rem;">Chi Siamo</span>
                 </a>
-                <a href="#casa" class="nav-link">
-                    <span class="nav-title" style="font-size: 0.95rem;">Assicurazione Casa</span>
-                </a>
-                <a href="#famiglia" class="nav-link">
-                    <span class="nav-title" style="font-size: 0.95rem;">Protezione Famiglia</span>
-                </a>
-                <a href="#aziende" class="nav-link">
-                    <span class="nav-title" style="font-size: 0.95rem;">Polizze Aziendali</span>
-                </a>
-                <a href="#rc" class="nav-link">
-                    <span class="nav-title" style="font-size: 0.95rem;">Rc Professionale</span>
-                </a>
-                <a href="#contact-section" class="btn btn-primary" aria-label="Richiedi informazioni"
-                    style="padding: 8px 16px; font-size: 0.9rem;">Contattaci</a>
+                <a href="#contact-section" class="btn btn-primary" aria-label="Richiedi informazioni">Contattaci</a>
             </nav>
         </div>
     </header>

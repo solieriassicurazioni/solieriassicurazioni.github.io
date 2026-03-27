@@ -251,6 +251,66 @@ body {
     color: var(--axa-blue);
 }
 
+/* Dropdown Menu (Prodotti) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: var(--text-main);
+    font-family: var(--font-family);
+}
+
+.dropdown-btn svg {
+    margin-left: 6px;
+    transition: transform 0.2s ease;
+}
+
+.dropdown:hover .dropdown-btn svg {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 100;
+    padding: 12px 0;
+    border: 1px solid #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    color: var(--text-main);
+    padding: 10px 24px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-light);
+    color: var(--axa-blue);
+}
+
 .menu-toggle {
     display: none;
     background: none;
@@ -601,6 +661,36 @@ body {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+    }
+
+    /* Adattamento Dropdown su Mobile */
+    .dropdown {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdown-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dropdown-content {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        padding: 10px 0 0 0;
+    }
+
+    .dropdown-item {
+        padding: 8px 24px;
+        font-size: 1rem;
     }
 
     .hero {
