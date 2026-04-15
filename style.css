@@ -335,9 +335,9 @@ body {
     min-height: 80vh;
     display: flex;
     align-items: center;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 55%, rgba(255, 255, 255, 0) 100%), url('Kina%20Landing_3.png');
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 55%, rgba(255, 255, 255, 0) 100%), url('Kina%20Landing_4.png');
     background-size: cover;
-    background-position: center right;
+    background-position: right 20%;
     background-repeat: no-repeat;
 }
 
@@ -694,8 +694,8 @@ body {
     }
 
     .hero {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('Kina%20Landing_3.png');
-        background-position: center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('Kina%20Landing_4.png');
+        background-position: center 20%;
         padding: var(--space-xl) 0;
         min-height: 70vh;
     }
