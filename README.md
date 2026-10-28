@@ -23,9 +23,7 @@ Landing Solieri/
 │   ├── reviews.json        # Recensioni Google mostrate nel sito (aggiornato dallo script sotto)
 │   └── *.webp, *.png, *.jpg  # Immagini ottimizzate, icone, immagine Open Graph
 ├── tools/update-reviews.mjs            # Scarica le recensioni da Google (Places API)
-├── .github/workflows/update-reviews.yml # Aggiornamento settimanale automatico
-├── Kina Landing_4.png      # Originale hero (non referenziato: si può spostare fuori dal sito)
-└── Logo Kina.png           # Originale logo (non referenziato)
+└── .github/workflows/update-reviews.yml # Aggiornamento settimanale (da aggiungere a mano)
 ```
 
 ## ⭐ Recensioni Google
