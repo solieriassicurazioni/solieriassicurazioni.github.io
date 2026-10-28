@@ -1,9 +1,9 @@
-/* --- DESIGN SYSTEM (AXA Inspired) --- */
+/* --- DESIGN SYSTEM  --- */
 :root {
     /* Colors */
-    --axa-blue: #00008f;
-    --axa-red: #ff1821;
-    --axa-red-hover: #d11218;
+    --brand-blue: #00008f;
+    --brand-red: #ff1821;
+    --brand-red-hover: #d11218;
     --bg-color: #ffffff;
     --bg-light: #f5f5f5;
     --text-main: #333333;
@@ -46,7 +46,7 @@ body {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--axa-blue);
+    background: var(--brand-blue);
     color: white;
     padding: 8px 16px;
     z-index: 1000;
@@ -61,7 +61,7 @@ body {
 
 /* Strict Focus States (Keyboard Nav) */
 :focus-visible {
-    outline: 3px solid var(--axa-blue);
+    outline: 3px solid var(--brand-blue);
     outline-offset: 4px;
 }
 
@@ -96,20 +96,20 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--axa-red);
+    background-color: var(--brand-red);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--axa-red-hover);
+    background-color: var(--brand-red-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 24, 33, 0.2);
 }
 
 .btn-outline {
     background-color: transparent;
-    color: var(--axa-blue);
-    border-color: var(--axa-blue);
+    color: var(--brand-blue);
+    border-color: var(--brand-blue);
 }
 
 .btn-outline:hover {
@@ -147,66 +147,13 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--axa-blue);
-}
-
-.logo-mark {
-    width: 32px;
-    height: 32px;
-    background-color: var(--axa-blue);
-    position: relative;
-    overflow: hidden;
-}
-
-.logo-mark::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    background-color: var(--axa-red);
-    transform: rotate(45deg) translate(20%, -50%);
+    color: var(--brand-blue);
 }
 
 .logo-text {
     font-weight: 700;
     font-size: 1.25rem;
     letter-spacing: -0.5px;
-}
-
-/* Top Bar */
-.top-bar {
-    background-color: var(--bg-light);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    padding: 8px 0;
-    border-bottom: 1px solid #ebebeb;
-}
-
-.top-bar-inner {
-    display: flex;
-    justify-content: flex-end;
-    gap: 24px;
-}
-
-.top-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 600;
-    transition: color var(--transition-fast);
-}
-
-.top-link:hover {
-    color: var(--axa-blue);
-}
-
-.top-link svg {
-    width: 14px;
-    height: 14px;
 }
 
 /* Logo Image */
@@ -239,16 +186,8 @@ body {
     font-weight: 600;
 }
 
-.nav-desc {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    margin-top: 4px;
-}
-
-.nav-link:hover .nav-title,
-.nav-link:hover .nav-desc {
-    color: var(--axa-blue);
+.nav-link:hover .nav-title {
+    color: var(--brand-blue);
 }
 
 /* Dropdown Menu (Prodotti) */
@@ -273,7 +212,7 @@ body {
     transition: transform 0.2s ease;
 }
 
-.dropdown:hover .dropdown-btn svg {
+.dropdown-btn[aria-expanded="true"] svg {
     transform: rotate(180deg);
 }
 
@@ -292,7 +231,8 @@ body {
     border: 1px solid #f0f0f0;
 }
 
-.dropdown:hover .dropdown-content {
+/* Stato gestito da script.js (hover mouse, clic/tocco, tastiera) per tenere aria-expanded coerente */
+.dropdown.open .dropdown-content {
     display: block;
 }
 
@@ -308,7 +248,7 @@ body {
 
 .dropdown-item:hover {
     background-color: var(--bg-light);
-    color: var(--axa-blue);
+    color: var(--brand-blue);
 }
 
 .menu-toggle {
@@ -335,7 +275,8 @@ body {
     min-height: 80vh;
     display: flex;
     align-items: center;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 55%, rgba(255, 255, 255, 0) 100%), url('Kina%20Landing_4.png');
+    /* In alto: sfumatura verso il bianco in basso, così l'immagine si fonde con il resto della pagina */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0.6) 82%, #ffffff 100%), linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 55%, rgba(255, 255, 255, 0) 100%), url('assets/hero.webp');
     background-size: cover;
     background-position: right 20%;
     background-repeat: no-repeat;
@@ -351,7 +292,7 @@ body {
 }
 
 .hero-title {
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     font-size: 3.5rem;
     line-height: 1.1;
     margin-bottom: var(--space-md);
@@ -365,13 +306,11 @@ body {
     max-width: 480px;
 }
 
-
-
 /* Policies / Solutions Section */
 .policies {
     padding: var(--space-xl) 0;
-    background-color: var(--bg-color);
-    /* Bianco per stacco dal light del contact */
+    background: linear-gradient(135deg, #ffffff 0%, #f6f8fb 100%);
+    /* Leggero gradiente per modernizzare lo sfondo */
 }
 
 .policies-header {
@@ -380,7 +319,7 @@ body {
 }
 
 .policies-header h2 {
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     font-size: 2.5rem;
     margin-bottom: var(--space-sm);
 }
@@ -417,7 +356,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: var(--space-md);
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -427,28 +366,14 @@ body {
 }
 
 .policy-card:hover .policy-icon {
-    background-color: var(--axa-blue);
+    background-color: var(--brand-blue);
     color: white;
 }
 
 .policy-card h3 {
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     font-size: 1.5rem;
     margin-bottom: var(--space-sm);
-}
-
-.policy-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: var(--space-md);
-    line-height: 1.5;
-}
-
-.policy-desc em {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.85rem;
-    color: #999;
 }
 
 .policy-features {
@@ -470,14 +395,8 @@ body {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--axa-red);
+    color: var(--brand-red);
     font-weight: bold;
-}
-
-.btn-sm {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    align-self: flex-start;
 }
 
 /* Review Promo Section */
@@ -509,7 +428,7 @@ body {
 }
 
 .review-content strong {
-    color: var(--axa-red);
+    color: var(--brand-red);
 }
 
 .review-terms {
@@ -529,7 +448,7 @@ body {
 }
 
 .contact-header h2 {
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     font-size: 2.5rem;
     margin-bottom: var(--space-sm);
 }
@@ -559,7 +478,7 @@ body {
     width: 48px;
     height: 48px;
     margin: 0 auto var(--space-md);
-    color: var(--axa-blue);
+    color: var(--brand-blue);
 }
 
 .card-icon.text-green {
@@ -572,7 +491,7 @@ body {
 }
 
 .contact-card h3 {
-    color: var(--axa-blue);
+    color: var(--brand-blue);
     margin-bottom: var(--space-sm);
     font-size: 1.25rem;
 }
@@ -584,9 +503,41 @@ body {
     min-height: 44px;
 }
 
+/* Mappa (caricata solo dopo consenso) */
+.map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    min-height: 320px;
+    padding: var(--space-lg);
+    text-align: center;
+    background: var(--bg-light);
+    color: var(--text-muted);
+}
+
+.map-placeholder p {
+    max-width: 520px;
+    font-size: 0.95rem;
+}
+
+.map-placeholder a {
+    color: var(--brand-blue);
+}
+
+.map-container iframe {
+    display: block;
+}
+
+.map-placeholder[hidden],
+.map-container iframe[hidden] {
+    display: none;
+}
+
 /* Footer */
 .site-footer {
-    background-color: var(--axa-blue);
+    background-color: var(--brand-blue);
     color: white;
     padding: var(--space-lg) 0;
     font-size: 0.875rem;
@@ -610,6 +561,109 @@ body {
     opacity: 1;
 }
 
+/* --- GLASSMORPHISM & REVIEWS CAROUSEL --- */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 143, 0.05);
+}
+
+.reviews-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    padding: 16px 40px;
+}
+
+.review-card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 143, 0.08);
+}
+
+.carousel-btn {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    color: var(--brand-blue);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+    z-index: 10;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    transform: scale(1.1);
+    background: var(--brand-blue);
+    color: white;
+}
+
+.carousel-btn.prev {
+    position: absolute;
+    left: -24px;
+}
+
+.carousel-btn.next {
+    position: absolute;
+    right: -24px;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.carousel-indicator {
+    border: none;
+    background: #d1d5db;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.carousel-indicator.current-indicator {
+    background: var(--brand-blue);
+    transform: scale(1.3);
+}
+
 /* --- ANIMATIONS (Intersection Observer) --- */
 .fade-up {
     opacity: 0;
@@ -622,13 +676,289 @@ body {
     transition: opacity var(--transition-smooth);
 }
 
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
 .delay-200 {
     transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+.delay-400 {
+    transition-delay: 0.4s;
+}
+
+.delay-500 {
+    transition-delay: 0.5s;
 }
 
 .is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* --- STILI SPOSTATI DA INLINE (index.html) --- */
+
+/* Hero */
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-icon {
+    gap: 8px;
+}
+
+.btn .icon-svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Servizi */
+.policies-grid--services {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.policy-card--center {
+    align-items: center;
+    text-align: center;
+}
+
+.policy-card .policy-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+.policy-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+/* Perché sceglierci */
+.why-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: var(--space-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.policy-features--lg {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Recensioni */
+.reviews {
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    padding: var(--space-xl) 0;
+}
+
+.reviews-intro {
+    margin: 0 auto 2rem auto;
+    max-width: 600px;
+}
+
+.review-stars {
+    color: #FBBC05;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.review-title {
+    color: var(--brand-blue);
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+}
+
+.review-text {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    line-clamp: 8;
+    overflow: hidden;
+}
+
+.reviews-summary {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.reviews-summary:empty {
+    display: none;
+}
+
+.reviews-credit {
+    margin-top: var(--space-lg);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.reviews-credit a,
+.review-author-link {
+    color: var(--brand-blue);
+}
+
+.review-author-link {
+    text-decoration: none;
+}
+
+.review-author-link:hover {
+    text-decoration: underline;
+}
+
+.review-when {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.review-author {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.star-gold {
+    color: #FBBC05;
+}
+
+.btn.btn-google {
+    background-color: #4285F4;
+    border-color: #4285F4;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+/* Mappa */
+.map-box {
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.map-container iframe {
+    border: 0;
+}
+
+/* Footer */
+.site-footer .footer-stack {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+}
+
+.footer-address {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.footer-address a,
+.link-white {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-address a.link-white-underline,
+.link-white-underline {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-wa-icon {
+    color: var(--wa-green);
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.site-footer .footer-links {
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-heading {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.footer-quicklinks {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-copy {
+    opacity: 0.7;
+    margin-top: 16px;
+}
+
+/* Cookie banner (display gestito da script.js) */
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    padding: 24px;
+    border-top: 2px solid var(--brand-blue);
+}
+
+.cookie-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cookie-title {
+    color: var(--brand-blue);
+    margin-bottom: 8px;
+}
+
+.cookie-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.cookie-link {
+    color: var(--brand-blue);
+    text-decoration: underline;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn.btn-compact {
+    padding: 8px 16px;
+    font-size: 0.9rem;
 }
 
 /* --- RESPONSIVE --- */
@@ -694,7 +1024,7 @@ body {
     }
 
     .hero {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('Kina%20Landing_4.png');
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, #ffffff 100%), linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('assets/hero-900.webp');
         background-position: center 20%;
         padding: var(--space-xl) 0;
         min-height: 70vh;
@@ -713,14 +1043,18 @@ body {
         margin: 0 auto var(--space-lg);
     }
 
-    .abstract-shape {
-        width: 280px;
-        height: 280px;
-    }
-
-    .footer-content {
+.footer-content {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+
+    .carousel-btn {
+        display: none;
+        /* Hide buttons on mobile to save space, use indicators */
+    }
+
+    .carousel-slide {
+        padding: 16px 8px;
     }
 }

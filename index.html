@@ -7,16 +7,85 @@
     <title>Solieri Assicurazioni - Assicurazioni Auto, Casa e Aziende a Verona</title>
     <meta name="description"
         content="Solieri Assicurazioni offre consulenza per polizze auto, casa, famiglia e aziende a Verona. Contattaci per un preventivo o assistenza sulle tue polizze.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#00008f">
+    <link rel="canonical" href="https://solieriassicurazioni.github.io/">
 
-    <!-- Font simile alla tipografia aziendale europea -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <!-- Icone -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="Solieri Assicurazioni">
+    <meta property="og:title" content="Solieri Assicurazioni - Assicurazioni Auto, Casa e Aziende a Verona">
+    <meta property="og:description"
+        content="Consulenza assicurativa per auto, casa, famiglia e aziende a Verona. Assistenza diretta e supporto rapido anche su WhatsApp.">
+    <meta property="og:url" content="https://solieriassicurazioni.github.io/">
+    <meta property="og:image" content="https://solieriassicurazioni.github.io/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solieri Assicurazioni, consulenza assicurativa a Verona">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Solieri Assicurazioni - Assicurazioni Auto, Casa e Aziende a Verona">
+    <meta name="twitter:description"
+        content="Consulenza assicurativa per auto, casa, famiglia e aziende a Verona.">
+    <meta name="twitter:image" content="https://solieriassicurazioni.github.io/assets/og-image.jpg">
+
+    <!-- Dati strutturati (SEO locale) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "InsuranceAgency",
+        "@id": "https://solieriassicurazioni.github.io/#agenzia",
+        "name": "Solieri Assicurazioni",
+        "alternateName": "Solieri Assicurazioni di Solieri Nicola",
+        "description": "Consulenza assicurativa per auto, casa, famiglia, aziende e RC professionale a Verona.",
+        "url": "https://solieriassicurazioni.github.io/",
+        "logo": "https://solieriassicurazioni.github.io/assets/icon-512.png",
+        "image": "https://solieriassicurazioni.github.io/assets/og-image.jpg",
+        "telephone": "+39 045 856 8483",
+        "email": "solieriassicurazioni@gmail.com",
+        "vatID": "IT02581110232",
+        "foundingDate": "1970",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via Belfiore 66",
+            "addressLocality": "Cadidavid, Verona",
+            "postalCode": "37135",
+            "addressRegion": "VR",
+            "addressCountry": "IT"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.3837509,
+            "longitude": 10.9948099
+        },
+        "areaServed": { "@type": "City", "name": "Verona" },
+        "sameAs": [
+            "https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+39 045 856 8483",
+            "contactType": "customer service",
+            "availableLanguage": "it"
+        }
+    }
+    </script>
+
+    <!-- Hero: precarico dell'immagine ottimizzata -->
+    <link rel="preload" as="image" href="assets/hero.webp" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="assets/hero-900.webp" media="(max-width: 768px)">
+
+    <!-- Font ospitato in locale (nessuna richiesta a Google) -->
+    <link rel="preload" href="assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
 
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +98,7 @@
     <header class="site-header">
         <div class="container header-container">
             <a href="#" class="brand-logo" aria-label="Home page Solieri Assicurazioni">
-                <img src="Logo Kina.png" alt="Logo Solieri Assicurazioni" class="logo-img" aria-hidden="true">
+                <img src="assets/logo.webp" alt="" width="192" height="195" class="logo-img">
                 <span class="logo-text">Solieri Assicurazioni</span>
             </a>
             <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="main-nav">
@@ -42,13 +111,13 @@
             </button>
             <nav aria-label="Navigazione principale" class="main-nav" id="main-nav">
                 <div class="dropdown">
-                    <button class="nav-link dropdown-btn" aria-haspopup="true" aria-expanded="false">
-                        <span class="nav-title" style="font-size: 1.05rem;">I Nostri Prodotti <svg width="12"
+                    <button class="nav-link dropdown-btn" aria-expanded="false" aria-controls="products-menu">
+                        <span class="nav-title">I Nostri Prodotti <svg aria-hidden="true" width="12"
                                 height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg></span>
                     </button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" id="products-menu">
                         <a href="#auto" class="dropdown-item">Assicurazione Auto</a>
                         <a href="#casa" class="dropdown-item">Assicurazione Casa</a>
                         <a href="#famiglia" class="dropdown-item">Protezione Famiglia</a>
@@ -57,7 +126,7 @@
                     </div>
                 </div>
                 <a href="#why-us-section" class="nav-link">
-                    <span class="nav-title" style="font-size: 1.05rem;">Chi Siamo</span>
+                    <span class="nav-title">Chi Siamo</span>
                 </a>
                 <a href="#contact-section" class="btn btn-primary" aria-label="Richiedi informazioni">Contattaci</a>
             </nav>
@@ -73,9 +142,8 @@
                     <h1 class="hero-title">Consulenza assicurativa per auto, casa e aziende a Verona</h1>
                     <p class="hero-subtitle">Soluzioni assicurative personalizzate per famiglie e imprese con assistenza
                         diretta e supporto rapido.</p>
-                    <div class="hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
-                        <a href="https://wa.me/390458568483" target="_blank" class="btn btn-primary bg-green"
-                            style="display: inline-flex; align-items: center; gap: 8px;">
+                    <div class="hero-actions">
+                        <a href="https://wa.me/390458568483" target="_blank" class="btn btn-primary bg-green btn-icon">
                             <svg viewBox="0 0 24 24" fill="none" class="icon-svg" width="20" height="20">
                                 <path
                                     d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
@@ -95,9 +163,8 @@
                 <div class="policies-header fade-up">
                     <h2>I nostri servizi assicurativi</h2>
                 </div>
-                <div class="policies-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                    <div id="auto" class="policy-card fade-up delay-100"
-                        style="align-items: center; text-align: center;">
+                <div class="policies-grid policies-grid--services">
+                    <div id="auto" class="policy-card fade-up delay-100 policy-card--center">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -107,13 +174,12 @@
                                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
                             </svg>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0;">Assicurazione Auto</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 12px; line-height: 1.4;">
+                        <h3 class="policy-title">Assicurazione Auto</h3>
+                        <p class="policy-text">
                             Protezione completa per il tuo veicolo con coperture personalizzate, assistenza e garanzie
                             aggiuntive.</p>
                     </div>
-                    <div id="casa" class="policy-card fade-up delay-200"
-                        style="align-items: center; text-align: center;">
+                    <div id="casa" class="policy-card fade-up delay-200 policy-card--center">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -121,13 +187,12 @@
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0;">Assicurazione Casa</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 12px; line-height: 1.4;">
+                        <h3 class="policy-title">Assicurazione Casa</h3>
+                        <p class="policy-text">
                             Tutela la tua abitazione e i tuoi beni da imprevisti come danni, furti o eventi naturali.
                         </p>
                     </div>
-                    <div id="famiglia" class="policy-card fade-up delay-300"
-                        style="align-items: center; text-align: center;">
+                    <div id="famiglia" class="policy-card fade-up delay-300 policy-card--center">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -136,13 +201,12 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0;">Protezione Famiglia</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 12px; line-height: 1.4;">
+                        <h3 class="policy-title">Protezione Famiglia</h3>
+                        <p class="policy-text">
                             Soluzioni assicurative pensate per proteggere la salute e la sicurezza della tua famiglia.
                         </p>
                     </div>
-                    <div id="aziende" class="policy-card fade-up delay-400"
-                        style="align-items: center; text-align: center;">
+                    <div id="aziende" class="policy-card fade-up delay-400 policy-card--center">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -159,12 +223,12 @@
                                 <path d="M8 14h.01"></path>
                             </svg>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0;">Polizze Aziendali</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 12px; line-height: 1.4;">
+                        <h3 class="policy-title">Polizze Aziendali</h3>
+                        <p class="policy-text">
                             Coperture assicurative dedicate alle imprese per proteggere attività, dipendenti e
                             responsabilità.</p>
                     </div>
-                    <div id="rc" class="policy-card fade-up delay-500" style="align-items: center; text-align: center;">
+                    <div id="rc" class="policy-card fade-up delay-500 policy-card--center">
                         <div class="policy-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -172,8 +236,8 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0;">RC Professionale</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 12px; line-height: 1.4;">
+                        <h3 class="policy-title">RC Professionale</h3>
+                        <p class="policy-text">
                             Assicurazione per professionisti che tutela da eventuali danni causati nello svolgimento
                             dell'attività lavorativa.</p>
                     </div>
@@ -187,9 +251,8 @@
                 <div class="policies-header fade-up">
                     <h2>Perché scegliere Solieri Assicurazioni</h2>
                 </div>
-                <div class="fade-up delay-100"
-                    style="max-width: 600px; margin: 0 auto; background: white; padding: var(--space-lg); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                    <ul class="policy-features" style="font-size: 1.1rem; margin-bottom: 0;">
+                <div class="fade-up delay-100 why-box">
+                    <ul class="policy-features policy-features--lg">
                         <li>Consulenza personalizzata</li>
                         <li>Confronto tra più compagnie assicurative</li>
                         <li>Assistenza sinistri</li>
@@ -200,17 +263,37 @@
             </div>
         </section>
 
-        <!-- GOOGLE REVIEW SECTION -->
+        <!-- RECENSIONI GOOGLE (caricate da assets/reviews.json; la sezione resta nascosta finché non ci sono dati) -->
+        <section id="reviews-section" class="reviews observer-section" hidden>
+            <div class="container">
+                <div class="policies-header fade-up">
+                    <h2>Cosa Dicono i Nostri Clienti</h2>
+                    <p class="reviews-summary" id="reviews-summary"></p>
+                </div>
+                <div class="reviews-carousel fade-up delay-200" role="region" aria-roledescription="carosello"
+                    aria-label="Recensioni Google">
+                    <button class="carousel-btn prev" aria-label="Recensione precedente">&#10094;</button>
+                    <div class="carousel-track-container">
+                        <ul class="carousel-track" id="reviews-track"></ul>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Recensione successiva">&#10095;</button>
+                </div>
+                <div class="carousel-nav fade-up delay-300" id="reviews-dots"></div>
+                <p class="reviews-credit">Recensioni pubblicate su Google &middot; <a id="reviews-all"
+                        href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z/data=!4m8!3m7!1s0x477f608af58a26b1:0xb82ae75795a6b2fa!8m2!3d45.3837509!4d10.9948099!9m1!1b1!16s%2Fg%2F12hk3jz4g" target="_blank" rel="noopener noreferrer">Leggi tutte le recensioni</a></p>
+            </div>
+        </section>
+
+        <!-- INVITO A RECENSIRE SU GOOGLE -->
         <section class="review-promo observer-section">
             <div class="container">
                 <div class="review-box fade-up">
                     <div class="review-content">
-                        <h2><span style="color: #FBBC05;">★</span> La tua opinione ti premia!</h2>
-                        <p>Lascia una recensione su Google e ricevi uno <strong>Sconto Esclusivo</strong> sulla tua
-                            prossima polizza. Ci vogliono solo 30 secondi.</p>
-                        <a href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z/data=!4m8!3m7!1s0x477f608af58a26b1:0xb82ae75795a6b2fa!8m2!3d45.3837509!4d10.9948099!9m1!1b1!16s%2Fg%2F12hk3jz4g?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
-                            target="_blank" rel="noopener noreferrer" class="btn btn-primary"
-                            style="background-color: #4285F4; border-color: #4285F4; display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;">
+                        <h2><span class="star-gold">★</span> Hai già lavorato con noi?</h2>
+                        <p>La tua recensione su Google aiuta altre persone a scegliere con fiducia. Ci vogliono solo 30
+                            secondi.</p>
+                        <a id="review-write" href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z/data=!4m8!3m7!1s0x477f608af58a26b1:0xb82ae75795a6b2fa!8m2!3d45.3837509!4d10.9948099!9m1!1b1!16s%2Fg%2F12hk3jz4g" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary btn-google">
                             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                                 <path
                                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -225,10 +308,8 @@
                                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                                     fill="#fff" />
                             </svg>
-                            LASCIACI UNA RECENSIONE
+                            SCRIVI UNA RECENSIONE
                         </a>
-                        <p class="review-terms">Mostra la recensione pubblicata al nostro team in agenzia per attivare
-                            lo sconto.</p>
                     </div>
                 </div>
             </div>
@@ -288,11 +369,19 @@
                     <h2>Dove Siamo</h2>
                     <p>Vieni a trovarci in agenzia: <strong>Via Belfiore 66, Verona</strong></p>
                 </div>
-                <div class="map-container fade-up delay-200"
-                    style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                    <iframe
-                        src="https://maps.google.com/maps?q=Solieri%20Assicurazioni,%20Via%20Belfiore%2066,%20Cadidavid&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                <div class="map-container fade-up delay-200 map-box">
+                    <!-- La mappa (Google, terza parte) si carica solo dopo consenso o clic dell'utente -->
+                    <div id="map-placeholder" class="map-placeholder">
+                        <p>Per visualizzare la mappa vengono caricati contenuti da Google, che può impostare propri
+                            cookie. <a href="cookie-policy.html">Maggiori informazioni</a></p>
+                        <button type="button" id="map-load" class="btn btn-primary">Carica la mappa</button>
+                        <p class="map-fallback"><a
+                                href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z"
+                                target="_blank" rel="noopener">Apri direttamente su Google Maps</a></p>
+                    </div>
+                    <iframe id="map-frame" hidden
+                        data-src="https://maps.google.com/maps?q=Solieri%20Assicurazioni,%20Via%20Belfiore%2066,%20Cadidavid&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="450" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
                         title="Mappa Google Maps di Solieri Assicurazioni"></iframe>
                 </div>
@@ -302,36 +391,33 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content" style="flex-direction: column; text-align: center; gap: 24px;">
-            <div style="font-size: 0.9rem; opacity: 0.9; line-height: 1.8;">
+        <div class="container footer-content footer-stack">
+            <div class="footer-address">
                 <strong>Solieri Assicurazioni</strong><br>
                 Consulenza assicurativa a Verona<br>
                 Via Belfiore 66, 37135 Cadidavid (VR) &middot; P.IVA 02581110232<br>
-                RUI IVASS n. <strong>E000097327</strong> (<a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home"
-                    target="_blank" rel="noopener" style="color: white; text-decoration: underline;">Verifica</a>)<br>
-                045 856 8483 <span title="Disponibile su WhatsApp"
-                    style="color: var(--wa-green); vertical-align: middle; display: inline-flex; align-items: center; margin-left: 4px;"><svg
+                RUI IVASS n. <strong>E000097327</strong> (<a class="link-white-underline" href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home"
+                    target="_blank" rel="noopener">Verifica</a>)<br>
+                045 856 8483 <span class="footer-wa-icon" title="Disponibile su WhatsApp"><svg
                         viewBox="0 0 24 24" fill="none" width="16" height="16">
                         <path
                             d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg></span><br>
-                <a href="mailto:solieriassicurazioni@gmail.com"
-                    style="color: white; text-decoration: none;">solieriassicurazioni@gmail.com</a> &middot; <a
-                    href="mailto:solieriassicurazioni@pec.it"
-                    style="color: white; text-decoration: none;">solieriassicurazioni@pec.it</a>
+                <a class="link-white" href="mailto:solieriassicurazioni@gmail.com">solieriassicurazioni@gmail.com</a> &middot; <a class="link-white"
+                    href="mailto:solieriassicurazioni@pec.it">solieriassicurazioni@pec.it</a>
             </div>
 
-            <div class="footer-links" style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Link veloci:</div>
-                <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <div class="footer-links">
+                <div class="footer-heading">Link veloci:</div>
+                <div class="footer-quicklinks">
                     <a href="https://wa.me/390458568483" target="_blank" rel="noopener">WhatsApp</a> &middot;
                     <a href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z/data=!4m8!3m7!1s0x477f608af58a26b1:0xb82ae75795a6b2fa!8m2!3d45.3837509!4d10.9948099!9m1!1b1!16s%2Fg%2F12hk3jz4g?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
                         target="_blank" rel="noopener">Google Maps</a> &middot;
                     <a href="https://www.google.com/maps/place/Solieri+Assicurazioni+di+Solieri+Nicola/@45.3837509,10.9948099,17z/data=!4m8!3m7!1s0x477f608af58a26b1:0xb82ae75795a6b2fa!8m2!3d45.3837509!4d10.9948099!9m1!1b1!16s%2Fg%2F12hk3jz4g?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
                         target="_blank" rel="noopener">Recensioni</a>
                 </div>
-                <div style="opacity: 0.7; margin-top: 16px;">&copy; 2026 Solieri Assicurazioni. Tutti i diritti
+                <div class="footer-copy">&copy; 2026 Solieri Assicurazioni. Tutti i diritti
                     riservati.</div>
                 <div>
                     <a href="privacy-policy.html">Privacy Policy</a>
@@ -343,21 +429,19 @@
     </footer>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="cookie-banner"
-        style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 9999; padding: 24px; border-top: 2px solid var(--axa-blue);">
-        <div class="container" style="display: flex; flex-direction: column; gap: 16px;">
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="container cookie-inner">
             <div>
-                <h3 style="color: var(--axa-blue); margin-bottom: 8px;">Informativa sui Cookie</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Utilizziamo cookie tecnici per il
-                    funzionamento del sito e, previo tuo consenso, cookie analitici per migliorare la tua esperienza. <a
-                        href="cookie-policy.html" style="color: var(--axa-blue); text-decoration: underline;">Scopri di
+                <h3 class="cookie-title">Informativa sui Cookie</h3>
+                <p class="cookie-text">Questo sito utilizza solo
+                    tecnologie tecniche necessarie al funzionamento. Con il tuo consenso carichiamo anche contenuti di
+                    terze parti (mappa Google Maps), che possono impostare propri cookie. <a class="cookie-link"
+                        href="cookie-policy.html">Scopri di
                         più</a>.</p>
             </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <button id="cookie-accept-all" class="btn btn-primary bg-green"
-                    style="padding: 8px 16px; font-size: 0.9rem;">Accetta Tutti</button>
-                <button id="cookie-reject-optional" class="btn btn-outline"
-                    style="padding: 8px 16px; font-size: 0.9rem;">Rifiuta Opzionali</button>
+            <div class="cookie-actions">
+                <button id="cookie-reject-optional" class="btn btn-outline btn-compact">Rifiuta</button>
+                <button id="cookie-accept-all" class="btn btn-outline btn-compact">Accetta</button>
             </div>
         </div>
     </div>
