@@ -290,6 +290,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (summary && data.rating && data.userRatingCount) {
         const rating = Number(data.rating).toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
         summary.textContent = `${rating} su 5 · ${data.userRatingCount} recensioni su Google`;
+
+        // Stessa valutazione, in evidenza nella hero
+        const heroRating = document.getElementById('hero-rating');
+        const heroText = document.getElementById('hero-rating-text');
+        if (heroRating && heroText) {
+            heroText.textContent = `${rating} · ${data.userRatingCount} recensioni su Google`;
+            heroRating.hidden = false;
+        }
     }
 
     const el = (tag, cls, text) => {
@@ -390,4 +398,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     start();
+
+    // --- Recensione flottante: una alla volta, dopo la scelta sui cookie, chiudibile ---
+    const TOAST_KEY = 'solieri_review_toast_closed';
+    const readClosed = () => { try { return sessionStorage.getItem(TOAST_KEY) === '1'; } catch (e) { return false; } };
+    if (readClosed()) return;
+
+    const banner = document.getElementById('cookie-banner');
+    const toast = el('aside', 'review-toast');
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    const close = el('button', 'review-toast-close', '×');
+    close.type = 'button';
+    close.setAttribute('aria-label', 'Chiudi recensione');
+    const tStars = el('div', 'review-stars');
+    const tText = el('p', 'review-toast-text');
+    const tAuthor = el('div', 'review-toast-author');
+    const tLink = el('a', 'review-toast-link', 'Leggi tutte le recensioni');
+    tLink.href = '#reviews-section';
+    toast.append(close, tStars, tText, tAuthor, tLink);
+    document.body.append(toast);
+
+    let toastIdx = 0;
+    let toastShown = 0;
+    let toastTimer = null;
+    let closed = false;
+    const SHOW_MS = 8000;
+    const GAP_MS = 4000;
+    const MAX_SHOWN = Math.min(reviews.length, 5);
+
+    const shortText = (t) => {
+        const s = t.trim().replace(/\s+/g, ' ');
+        return s.length > 150 ? s.slice(0, 147).replace(/\s+\S*$/, '') + '…' : s;
+    };
+    const bannerVisible = () => banner && getComputedStyle(banner).display !== 'none';
+
+    const hideToast = () => toast.classList.remove('is-shown');
+
+    const showNext = () => {
+        if (closed || toastShown >= MAX_SHOWN) return;
+        if (document.hidden || bannerVisible()) { // aspetta che l'utente risponda al banner cookie
+            toastTimer = setTimeout(showNext, 1500);
+            return;
+        }
+        const r = reviews[toastIdx % reviews.length];
+        toastIdx++;
+        toastShown++;
+        tStars.textContent = '★'.repeat(Math.round(r.rating));
+        tStars.setAttribute('aria-label', `${Math.round(r.rating)} stelle su 5`);
+        tText.textContent = `“${shortText(r.text)}”`;
+        tAuthor.textContent = `${r.author || 'Cliente Google'} · Google`;
+        toast.classList.add('is-shown');
+        toastTimer = setTimeout(() => {
+            hideToast();
+            toastTimer = setTimeout(showNext, GAP_MS);
+        }, SHOW_MS);
+    };
+
+    close.addEventListener('click', () => {
+        closed = true;
+        clearTimeout(toastTimer);
+        hideToast();
+        try { sessionStorage.setItem(TOAST_KEY, '1'); } catch (e) { /* ignora */ }
+    });
+    tLink.addEventListener('click', hideToast);
+
+    toastTimer = setTimeout(showNext, 6000);
 });
